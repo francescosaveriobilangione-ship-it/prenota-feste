@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prenota le feste – Agriturismo Il Poggio (esempio)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bosco:#1E3B2C;--ink:#18201A;--salvia:#EDF1E8;--oro:#B9832A;--vino:#8E2C36;--line:#DCE2D6;--mute:#5C675D;--wa:#1F9D55}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 Manrope,Arial,sans-serif}
+.wrap{max-width:540px;margin:0 auto;padding:28px 20px 140px}
+.house{font-weight:700;color:var(--bosco);font-size:15px;margin:0}
+h1{font:400 36px/1.08 Gloock,Georgia,serif;margin:6px 0 10px;letter-spacing:-.2px}
+.lead{color:var(--mute);margin:0;max-width:40ch}
+.step{margin-top:36px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.n{width:28px;height:28px;border-radius:50%;background:var(--bosco);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+h2{font:400 22px/1.2 Gloock,Georgia,serif;margin:0}
+/* segnaposto */
+.cards{display:grid;gap:10px}
+.card{position:relative;display:grid;grid-template-columns:76px 1fr auto;align-items:center;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;transition:background .2s,border-color .2s}
+.card input{position:absolute;opacity:0;pointer-events:none}
+.date{align-self:stretch;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1.5px dashed var(--line);padding:12px 0}
+.date b{font:400 32px/1 Gloock,Georgia,serif}
+.date span{font-size:13px;font-weight:700;color:var(--mute)}
+.what{padding:13px 14px}
+.what b{display:block;font-weight:700;font-size:16px}
+.what small{color:var(--mute);font-size:14px}
+.price{padding-right:16px;font-weight:800;color:var(--oro);font-size:17px;white-space:nowrap}
+.card:has(input:checked){background:var(--bosco);border-color:var(--bosco);color:#fff}
+.card:has(input:checked) .date{border-color:rgba(255,255,255,.35)}
+.card:has(input:checked) .date span,.card:has(input:checked) .what small{color:#CFDACB}
+.card:has(input:checked) .price{color:#F1D08A}
+.card:has(input:focus-visible){outline:3px solid var(--oro);outline-offset:2px}
+/* persone */
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row small{display:block;color:var(--mute);font-size:14px}
+.cnt{display:flex;align-items:center;gap:10px}
+.cnt button{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--bosco);background:#fff;color:var(--bosco);font:600 22px/1 Manrope,sans-serif;cursor:pointer}
+.cnt button:active{background:var(--salvia)}
+.cnt button:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
+.cnt output{min-width:24px;text-align:center;font-weight:800;font-size:19px}
+/* pill */
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;font-weight:600;font-size:15px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill:has(input:checked){background:var(--salvia);border-color:var(--bosco);color:var(--bosco)}
+.pill:has(input:focus-visible){outline:3px solid var(--oro);outline-offset:2px}
+label.f{display:block;font-weight:700;font-size:15px;margin:16px 0 6px}
+input[type=text],input[type=tel],textarea{width:100%;font:inherit;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input:focus,textarea:focus{outline:none;border-color:var(--bosco);box-shadow:0 0 0 3px var(--salvia)}
+textarea{min-height:76px;resize:vertical}
+.hint{font-size:14px;color:var(--mute);margin:10px 0 0}
+.deposit{margin-top:30px;padding:16px;border-radius:14px;background:var(--salvia);font-size:15px}
+.deposit b{color:var(--bosco)}
+.demo{color:var(--mute);font-size:13px;margin-top:24px}
+.flag{animation:flag 1.4s}
+@keyframes flag{0%,60%{box-shadow:0 0 0 3px var(--vino)}100%{box-shadow:0 0 0 0 transparent}}
+/* barra */
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom))}
+.bar .in{max-width:540px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.sum{flex:1;min-width:0}
+.sum small{display:block;color:var(--mute);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sum b{font:400 28px/1.05 Gloock,Georgia,serif}
+.send{flex:none;background:var(--wa);color:#fff;border-radius:14px;padding:14px 18px;font-weight:800;font-size:16px;text-decoration:none;text-align:center;max-width:62%}
+.send:focus-visible{outline:3px solid var(--oro);outline-offset:2px}
+.send.err{background:#fff;color:var(--vino);border:1.5px solid var(--vino);font-weight:700;font-size:15px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<p class="house">Agriturismo Il Poggio</p>
+<h1>Prenota il tuo posto a tavola per le feste</h1>
+<p class="lead">Scegli il giorno e quante persone siete: ti confermiamo il tavolo su WhatsApp.</p>
+
+<section class="step" aria-labelledby="s1">
+ <div class="sh"><span class="n">1</span><h2 id="s1">Scegli il giorno</h2></div>
+ <div class="cards">
+  <label class="card"><input type="radio" name="ev" value="Pranzo di Natale|25/12|65|32" checked><div class="date"><b>25</b><span>dic</span></div><div class="what"><b>Pranzo di Natale</b><small>Alle 13:00, menù della tradizione</small></div><div class="price">65 €</div></label>
+  <label class="card"><input type="radio" name="ev" value="Pranzo di Santo Stefano|26/12|45|22"><div class="date"><b>26</b><span>dic</span></div><div class="what"><b>Pranzo di Santo Stefano</b><small>Alle 13:00</small></div><div class="price">45 €</div></label>
+  <label class="card"><input type="radio" name="ev" value="Cenone di Capodanno|31/12|90|45"><div class="date"><b>31</b><span>dic</span></div><div class="what"><b>Cenone di Capodanno</b><small>Alle 20:30, con musica dal vivo</small></div><div class="price">90 €</div></label>
+  <label class="card"><input type="radio" name="ev" value="Pranzo del 1° gennaio|01/01|50|25"><div class="date"><b>1</b><span>gen</span></div><div class="what"><b>Pranzo di Capodanno</b><small>Alle 13:00</small></div><div class="price">50 €</div></label>
+ </div>
+</section>
+
+<section class="step" aria-labelledby="s2">
+ <div class="sh"><span class="n">2</span><h2 id="s2">Quante persone?</h2></div>
+ <div class="row"><span>Adulti<small id="pa">65 € a persona</small></span><div class="cnt" data-k="ad"><button type="button" aria-label="Togli un adulto">−</button><output aria-live="polite">2</output><button type="button" aria-label="Aggiungi un adulto">+</button></div></div>
+ <div class="row"><span>Bambini da 4 a 12 anni<small id="pb">32 € a bambino</small></span><div class="cnt" data-k="bi"><button type="button" aria-label="Togli un bambino">−</button><output aria-live="polite">0</output><button type="button" aria-label="Aggiungi un bambino">+</button></div></div>
+ <div class="row"><span>Bambini sotto i 4 anni<small>Gratis, con seggiolone</small></span><div class="cnt" data-k="pi"><button type="button" aria-label="Togli un bambino piccolo">−</button><output aria-live="polite">0</output><button type="button" aria-label="Aggiungi un bambino piccolo">+</button></div></div>
+</section>
+
+<section class="step" aria-labelledby="s3">
+ <div class="sh"><span class="n">3</span><h2 id="s3">Esigenze a tavola</h2></div>
+ <div class="pills" id="diet">
+  <label class="pill"><input type="checkbox" value="vegetariano">Vegetariano</label>
+  <label class="pill"><input type="checkbox" value="senza glutine">Senza glutine</label>
+  <label class="pill"><input type="checkbox" value="senza lattosio">Senza lattosio</label>
+ </div>
+ <label class="f" for="all">Allergie o richieste</label>
+ <textarea id="all" placeholder="Per esempio: un adulto allergico alla frutta secca"></textarea>
+</section>
+
+<section class="step" aria-labelledby="s4">
+ <div class="sh"><span class="n">4</span><h2 id="s4">Vuoi fermarti a dormire?</h2></div>
+ <div class="pills">
+  <label class="pill"><input type="radio" name="sl" value="0" checked>Solo il pasto</label>
+  <label class="pill"><input type="radio" name="sl" value="1">Sì, una notte in camera</label>
+ </div>
+ <p class="hint" id="slnote" hidden>Ti confermiamo la disponibilità della camera su WhatsApp.</p>
+</section>
+
+<section class="step" aria-labelledby="s5">
+ <div class="sh"><span class="n">5</span><h2 id="s5">I tuoi dati</h2></div>
+ <label class="f" for="nm">Nome e cognome</label><input type="text" id="nm" autocomplete="name" placeholder="Maria Rossi">
+ <label class="f" for="tl">Telefono</label><input type="tel" id="tl" autocomplete="tel" inputmode="tel" placeholder="333 123 4567">
+</section>
+
+<div class="deposit"><b>Come si conferma:</b> ti mandiamo su WhatsApp i dati per un acconto del 30% con bonifico o PayPal. Il tavolo è tuo quando arriva l'acconto. I posti sono limitati.</div>
+<p class="demo">Esempio dimostrativo: nome, menù e prezzi sono di prova e si adattano al vostro agriturismo.</p>
+</main>
+
+<div class="bar"><div class="in">
+ <div class="sum"><small id="who">2 adulti, Pranzo di Natale</small><b id="tot">130 €</b></div>
+ <a class="send" id="send" href="#" target="_blank" rel="noopener">Invia su WhatsApp</a>
+</div></div>
+
+<script>
+const NUMERO="393318522753";
+const n={ad:2,bi:0,pi:0};let tried=false;
+const $=s=>document.querySelector(s);
+function ev(){const v=document.querySelector('input[name=ev]:checked').value.split('|');return{nome:v[0],data:v[1],pa:+v[2],pb:+v[3]};}
+function chk(s){let h=0;for(const c of s+'poggio')h=(h*31+c.charCodeAt(0))>>>0;return h.toString(36).slice(-3).toUpperCase();}
+function problema(){
+ if(n.ad<1)return{t:'Aggiungi almeno un adulto',el:'[data-k=ad]'};
+ if(!$('#nm').value.trim())return{t:'Scrivi nome e cognome',el:'#nm'};
+ if($('#tl').value.replace(/\D/g,'').length<9)return{t:'Scrivi il telefono',el:'#tl'};
+ return null;}
+function upd(){
+ const e=ev();$('#pa').textContent=e.pa+' € a persona';$('#pb').textContent=e.pb+' € a bambino';
+ const tot=n.ad*e.pa+n.bi*e.pb;
+ const parts=[n.ad+(n.ad==1?' adulto':' adulti')];if(n.bi)parts.push(n.bi+(n.bi==1?' bambino':' bambini'));if(n.pi)parts.push(n.pi+' sotto i 4 anni');
+ $('#who').textContent=parts.join(', ')+', '+e.nome;$('#tot').textContent=tot+' €';
+ const sl=document.querySelector('input[name=sl]:checked').value=='1';$('#slnote').hidden=!sl;
+ const diet=[...document.querySelectorAll('#diet input:checked')].map(i=>i.value);
+ const code=['F',e.data.replace('/',''),n.ad,n.bi,n.pi].join('-');
+ const msg=['Ciao! Vorrei prenotare.','',e.nome+' ('+e.data+')','Adulti: '+n.ad,'Bambini 4-12 anni: '+n.bi,'Sotto i 4 anni: '+n.pi,'Esigenze: '+(diet.join(', ')||'nessuna'),'Allergie o richieste: '+($('#all').value.trim()||'nessuna'),'Pernottamento: '+(sl?'sì, una notte':'no'),'Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Totale indicato: '+tot+' €','Codice prenotazione: '+code+'-'+chk(code+tot),'','Aspetto i dati per l\'acconto.'].join('\n');
+ const a=$('#send'),p=problema();
+ if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia su WhatsApp';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
+ else{a.classList.remove('err');a.textContent='Invia su WhatsApp';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
+}
+document.querySelectorAll('.cnt').forEach(c=>{const k=c.dataset.k,[m,o,p]=c.children;m.onclick=()=>{n[k]=Math.max(0,n[k]-1);o.value=n[k];upd()};p.onclick=()=>{n[k]=Math.min(30,n[k]+1);o.value=n[k];upd()};});
+document.addEventListener('input',upd);document.addEventListener('change',upd);upd();
+</script>
+</body>
+</html>
