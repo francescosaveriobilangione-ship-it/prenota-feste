@@ -5,20 +5,20 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Preventivo per la tua festa – Villa Gemma (proposta)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--notte:#2E4A3B;--ink:#1D2620;--nebbia:#EEF3EE;--champ:#A9814B;--rosa:#B5566A;--line:#D9E1DA;--mute:#5D6A61;--wa:#1F9D55}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 Manrope,Arial,sans-serif}
-.wrap{max-width:560px;margin:0 auto;padding:30px 20px 150px}
+body{margin:0;background:#fff;color:var(--ink);font:16.5px/1.55 Figtree,Arial,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:18px 20px 150px}
 .house{font-weight:700;color:var(--notte);font-size:15px;margin:0}
-h1{font:400 40px/1.05 Italiana,Georgia,serif;margin:8px 0 12px;color:var(--notte)}
+h1{font:400 38px/1.08 "Young Serif",Georgia,serif;margin:6px 0 12px;color:var(--notte);letter-spacing:-.6px}
 .lead{color:var(--mute);margin:0;max-width:42ch}
 .step{margin-top:38px}
 .sh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .n{width:28px;height:28px;border-radius:50%;background:var(--notte);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
-h2{font:400 26px/1.15 Italiana,Georgia,serif;margin:0}
+h2{font:400 22px/1.2 "Young Serif",Georgia,serif;margin:0;letter-spacing:-.2px}
 .types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .type{position:relative;border:1.5px solid var(--line);border-radius:14px;padding:16px 14px;cursor:pointer;transition:background .2s,border-color .2s}
 .type input{position:absolute;opacity:0;pointer-events:none}
@@ -34,8 +34,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:var(--notte);b
 .two label.f{margin-top:0}
 textarea{min-height:76px;resize:vertical}
 .guests{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:6px 0}
-.guests output{font:400 52px/1 Italiana,Georgia,serif;color:var(--notte);min-width:3ch;text-align:center}
-.guests button{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--notte);background:#fff;color:var(--notte);font:600 15px/1 Manrope,sans-serif;cursor:pointer}
+.guests output{font:400 50px/1 "Young Serif",Georgia,serif;color:var(--notte);min-width:3ch;text-align:center}
+.guests button{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--notte);background:#fff;color:var(--notte);font:600 15px/1 Figtree,sans-serif;cursor:pointer}
 .guests button:active{background:var(--nebbia)}
 .guests button:focus-visible{outline:3px solid var(--champ);outline-offset:2px}
 input[type=range]{width:100%;accent-color:var(--notte);margin-top:8px}
@@ -60,7 +60,7 @@ input[type=range]{width:100%;accent-color:var(--notte);margin-top:8px}
 .bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px}
 .sum{flex:1;min-width:0}
 .sum small{display:block;color:var(--ink);font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sum b{display:block;font:800 23px/1.15 Manrope,Arial,sans-serif;color:var(--notte);letter-spacing:-.3px}
+.sum b{display:block;font:400 24px/1.15 "Young Serif",Georgia,serif;color:var(--notte);letter-spacing:-.3px}
 .send{flex:none;background:var(--wa);color:#fff;border-radius:14px;padding:14px 18px;font-weight:800;font-size:16px;text-decoration:none;text-align:center;max-width:58%}
 .send:focus-visible{outline:3px solid var(--champ);outline-offset:2px}
 .send.err{background:#fff;color:var(--rosa);border:1.5px solid var(--rosa);font-weight:700;font-size:15px}
@@ -69,16 +69,36 @@ input[type=range]{width:100%;accent-color:var(--notte);margin-top:8px}
 .kids{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px}
 .kids b{display:block}.kids small{color:var(--mute);font-size:14px}
 .kc{display:flex;align-items:center;gap:10px}
-.kc button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--notte);background:#fff;color:var(--notte);font:700 18px/1 Manrope,sans-serif;cursor:pointer}
+.kc button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--notte);background:#fff;color:var(--notte);font:700 18px/1 Figtree,sans-serif;cursor:pointer}
 .kc output{font-weight:800;font-size:20px;min-width:2ch;text-align:center}
 .place{margin-top:6px}
+.hill{display:block;width:100%;height:auto;margin:0 0 8px;color:var(--notte)}
+.hill path{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.hill .far{stroke:#9DB3A2}
+.hill .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:draw 1.8s cubic-bezier(.6,.05,.25,1) forwards}
+.hill .far.draw{animation-delay:.15s}.hill .tow.draw{animation-delay:1.1s;animation-duration:.9s}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero-t{opacity:0;animation:rise .7s .9s ease-out forwards}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.type:has(input:checked){animation:press .25s ease-out}
+@keyframes press{50%{transform:scale(.97)}}
+.sum b.bump{animation:bump .35s ease-out}
+@keyframes bump{40%{color:var(--champ)}}
+@media (prefers-reduced-motion:reduce){.hill .draw{stroke-dashoffset:0}.hero-t{opacity:1}}
 </style>
 </head>
 <body>
 <main class="wrap">
+<svg class="hill" viewBox="0 0 520 96" aria-hidden="true">
+ <path class="far draw" d="M0 74 C60 62 92 40 140 34 C178 29 206 46 236 40 C270 33 300 12 336 14 C372 16 398 44 438 52 C470 58 496 54 520 50"/>
+ <path class="draw" d="M0 92 C70 84 120 70 186 72 C240 74 268 86 330 84 C392 82 440 70 520 74"/>
+ <path class="tow draw" d="M392 78 V50 L400 42 L408 50 V78 M400 42 V36 M396 58 H404 M404 78 V64 H416 L422 58 L428 64 V78"/>
+</svg>
+<div class="hero-t">
 <p class="house">Villa Gemma · Statigliano, Caserta</p>
 <h1>Il preventivo per la tua festa, subito</h1>
 <p class="lead">Scegli evento, invitati e menù: vedi subito una stima e ci mandi la richiesta su WhatsApp. Ti rispondiamo con il preventivo e una data per visitare la villa.</p>
+</div>
 
 <section class="step" aria-labelledby="s1">
  <div class="sh"><span class="n">1</span><h2 id="s1">Cosa festeggi?</h2></div>
@@ -173,6 +193,10 @@ function problema(){
  if(!$('#nm').value.trim())return{t:'Scrivi nome e cognome',el:'#nm'};
  if($('#tl').value.replace(/\D/g,'').length<9)return{t:'Scrivi il telefono',el:'#tl'};
  return null;}
+let shown=null,raf=0;
+function anim(t){const el=$('#tot');if(shown===null||matchMedia('(prefers-reduced-motion: reduce)').matches){shown=t;el.textContent='da '+eur(t);return}
+ if(t===shown)return;cancelAnimationFrame(raf);const a=shown,t0=performance.now(),d=450;el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');
+ const st=n=>{const p=Math.min(1,(n-t0)/d),e=1-Math.pow(1-p,3);const v=Math.round((a+(t-a)*e)/5)*5;el.textContent='da '+eur(p<1?v:t);if(p<1)raf=requestAnimationFrame(st);else shown=t};raf=requestAnimationFrame(st);shown=t}
 function upd(){
  $('#gn').value=g;$('#gr').value=g;$('#kn').value=k;
  const tp=document.querySelector('input[name=tp]:checked').value;
@@ -185,7 +209,7 @@ function upd(){
  let tot=g*(+pp)+k*30;const ex=[];
  document.querySelectorAll('#ex input:checked').forEach(i=>{const [n,c]=i.value.split('|');ex.push(n);tot+=c.endsWith('pp')?g*parseInt(c):+c;});
  $('#who').textContent=tp+', '+g+' adulti'+(k?' e '+k+' bambini':'')+', menù '+mn;
- $('#tot').textContent='da '+eur(tot);
+ anim(tot);
  const msg=['Buongiorno! Vorrei un preventivo da Villa Gemma.','','Evento: '+tp+' ('+mo+')','Data: '+fd($('#d1').value)+($('#d2').value?' (in alternativa '+fd($('#d2').value)+')':''),($('#chiesa').checked?'Cerimonia: '+$('#chiesa').value:'Cerimonia: altrove o nessuna'),'Invitati: '+g+' adulti'+(k?' + '+k+' bambini':''),'Menù: '+mn+' (da '+pp+' € a persona)','Spazio: '+sp,'Extra: '+(ex.join(', ')||'nessuno'),'Note: '+($('#nt').value.trim()||'nessuna'),'Visita alla villa: '+$('#vs').value,'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Stima indicata dal modulo: da '+eur(tot)].join('\n');
  const a=$('#send'),p=problema();
  if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia la richiesta';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
@@ -196,6 +220,7 @@ $('#gp').onclick=()=>{g=Math.min(400,g+10);upd()};
 $('#gr').oninput=e=>{g=+e.target.value;upd()};
 $('#km').onclick=()=>{k=Math.max(0,k-1);upd()};
 $('#kp').onclick=()=>{k=Math.min(150,k+1);upd()};
+document.querySelectorAll('.hill .draw').forEach(p=>p.style.setProperty('--len',Math.ceil(p.getTotalLength())));
 document.addEventListener('input',upd);document.addEventListener('change',upd);upd();
 </script>
 </body>
