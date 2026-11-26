@@ -78,7 +78,11 @@ body{background:#FDC300;color:#000}
 .house span{background:#000!important;color:#FDC300!important}
 h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14px}
 .lead{color:#2a2200;font-weight:500}
-.preview{background:#fff;border:2.5px solid #000;border-radius:20px;box-shadow:7px 7px 0 #000;margin:24px 6px 0 0;padding:20px 0 12px}
+.preview{background:#fff;border:2.5px solid #000;border-radius:20px;box-shadow:7px 7px 0 #000;margin:24px 6px 0 0;padding:16px 0 10px;position:sticky;top:10px;z-index:5}
+.preview svg{width:190px}
+#views svg{width:150px}
+.vlab{font-weight:800;font-size:12px;text-align:center;margin-top:-4px}
+.tecbadge{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:#000;color:#FDC300;font-weight:800;font-size:12px}
 .preview small{color:#3d3d3d;font-weight:600}
 .panel{background:#fff;border:2.5px solid #000;border-radius:22px;padding:4px 18px 22px;margin-top:30px}
 .panel .step:first-child{margin-top:22px}
@@ -111,7 +115,7 @@ h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14
 <p class="lead">Abbigliamento da lavoro, promozionale e kit sportivi: scegli capo, taglie, stampa o ricamo, vedi il prezzo e ci mandi la richiesta su WhatsApp.</p>
 
 <div class="preview" aria-hidden="true">
- <svg viewBox="0 0 200 190">
+ <svg viewBox="0 0 200 190" id="svgA"><defs><linearGradient id="cmyk" x1="0" x2="1"><stop offset="0" stop-color="#00A3E0"/><stop offset=".5" stop-color="#E0007A"/><stop offset="1" stop-color="#F2B800"/></linearGradient></defs>
 <g id="gar"><g id="g-tshirt" class="capo-g"><path class="cf" d="M62 14 L34 26 L8 58 L32 76 L44 64 L44 178 L156 178 L156 64 L168 76 L192 58 L166 26 L138 14 Q100 40 62 14 Z"/></g>
 <g id="g-polo" class="capo-g"><path class="cf" d="M66 16 L36 26 L10 58 L33 75 L45 64 L45 178 L155 178 L155 64 L167 75 L190 58 L164 26 L134 16 L100 22 Z"/><path class="cf" d="M66 16 L84 40 L100 22 L116 40 L134 16 L100 22 Z"/><path d="M100 22 L100 54" stroke="#151515" stroke-width="2" fill="none"/><circle cx="100" cy="36" r="2" fill="#151515"/><circle cx="100" cy="47" r="2" fill="#151515"/></g>
 <g id="g-felpa" class="capo-g"><path class="cf" d="M64 22 Q100 -8 136 22 L166 32 L188 120 L170 126 L154 70 L154 170 L46 170 L46 70 L30 126 L12 120 L34 32 Z"/><path class="cf" d="M74 22 Q100 50 126 22 Q120 6 100 4 Q80 6 74 22 Z"/><path d="M46 160 L154 160 M70 118 L130 118 L136 150 L64 150 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
@@ -119,7 +123,7 @@ h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14
 <g id="g-kit" class="capo-g"><path class="cf" d="M64 8 L40 18 L18 44 L36 58 L46 50 L46 120 L154 120 L154 50 L164 58 L182 44 L160 18 L136 8 Q100 30 64 8 Z"/><path class="cf" d="M56 128 L144 128 L150 182 L106 182 L100 150 L94 182 L50 182 Z"/></g>
 <g id="g-pantalone" class="capo-g"><path class="cf" d="M58 8 L142 8 L150 184 L110 184 L100 60 L90 184 L50 184 Z"/><path d="M58 22 L142 22 M62 70 L86 70 L86 98 L62 98 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
 </g><rect id="pf" x="63" y="62" width="74" height="40" rx="4" fill="none" stroke="#151515" stroke-width="2" stroke-dasharray="5 4"/><rect id="sqb" x="0" y="0" width="4" height="10" rx="1.5" fill="#000"/><text id="pt" x="100" y="87" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" fill="#151515">IL TUO LOGO</text></svg>
- <small id="pv">T-shirt bianca, stampa davanti</small>
+ <div id="views" style="display:flex;gap:4px;align-items:center;justify-content:center"></div><small id="pv">T-shirt bianca, stampa davanti</small>
 </div>
 
 <div class="panel">
@@ -216,10 +220,22 @@ function upd(){
  let [bx,by,bw,bh]=bxs; if(pos==='logo sul cuore'&&key!=='pantalone'&&key!=='giubbotto'){bx=110;bw=30;bh=20;by=bxs[1];}
  $('#pf').setAttribute('x',bx);$('#pf').setAttribute('y',by);$('#pf').setAttribute('width',bw);$('#pf').setAttribute('height',bh);
  $('#pt').setAttribute('x',bx+bw/2);$('#pt').setAttribute('y',by+bh/2+3);$('#pt').setAttribute('font-size',bw<40?4.5:9);
- const tx=$('#tx').value.trim();const sig=key+pos+tec+tx;if(key!==lastKey){const g=document.getElementById('gar');g.classList.remove('swap');void g.getBBox();g.classList.add('swap');lastKey=key}
+ const tx=$('#tx').value.trim();const both=pos==='davanti e dietro',back=pos==='dietro';const sig=key+pos+tec+tx;if(key!==lastKey){const g=document.getElementById('gar');g.classList.remove('swap');void g.getBBox();g.classList.add('swap');lastKey=key}
  if(sig!==lastSig){lastSig=sig;clearTimeout(inkT);inkT=setTimeout(()=>stampa(bx,by,bw,bh),tx?260:0)}
  $('#pt').textContent=(tx||'IL TUO LOGO').toUpperCase().slice(0,bw<40?10:18);
- $('#pv').textContent=capo+' · colore '+col+' · '+pos;
+ // tecnica visiva
+ const ptx=document.getElementById('pt');
+ ptx.removeAttribute('stroke');ptx.removeAttribute('stroke-dasharray');ptx.removeAttribute('stroke-width');ptx.style.letterSpacing='';
+ if(tec==='stampa a colori'){ptx.setAttribute('fill','url(#cmyk)')}
+ else if(tec==='ricamo'){ptx.style.letterSpacing='.6px';ptx.setAttribute('font-weight','900')}
+ const pf=document.getElementById('pf');pf.setAttribute('stroke-dasharray',tec==='ricamo'?'2.2 1.8':'5 4');pf.setAttribute('stroke-width',tec==='ricamo'?'1.6':'2');pf.setAttribute('rx',tec==='ricamo'?'9':'4');pf.setAttribute('fill',tec==='ricamo'?(dark?'rgba(253,195,0,.18)':'rgba(0,0,0,.07)'):'none');if(tec!=='ricamo')ptx.setAttribute('font-weight','800')
+ // viste fronte / retro
+ const A=document.getElementById('svgA'),V=document.getElementById('views');V.innerHTML='';
+ A.style.display=both?'none':'';
+ if(both){['Fronte','Retro'].forEach(lbl=>{const w=document.createElement('div');const c=A.cloneNode(true);c.removeAttribute('id');c.style.display='';c.querySelectorAll('rect[id="sqb"]').forEach(e=>e.remove());c.querySelectorAll('[id]').forEach(e=>{if(e.id!=='cmyk')e.removeAttribute('id')});if(lbl==='Retro'){c.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}w.appendChild(c);const l=document.createElement('div');l.className='vlab';l.textContent=lbl;w.appendChild(l);V.appendChild(w)})}
+ if(back){A.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}else{A.querySelectorAll('.capo-g path:not(.cf),.capo-g circle').forEach(e=>e.style.display='')}
+
+ $('#pv').innerHTML=capo+' · '+col+' · '+(back?'vista retro':pos)+'<span class="tecbadge">'+tec.replace('stampa ','')+'</span>';
  $('#who').textContent=pezzi+(pezzi==1?' pezzo':' pezzi')+' · '+eur(Math.round(unit*100)/100)+' l\'uno';$('#tot').textContent=eur(tot);
  const taglie=SZ.filter(s=>q[s]).map(s=>s+': '+q[s]).join(', ');
  const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', colore '+col,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Testo: '+(tx||'nessuno (vi mando il logo in chat)'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
