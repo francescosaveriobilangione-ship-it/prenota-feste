@@ -120,7 +120,7 @@ h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14
 <g id="g-polo" class="capo-g"><path class="cf" d="M66 16 L36 26 L10 58 L33 75 L45 64 L45 178 L155 178 L155 64 L167 75 L190 58 L164 26 L134 16 L100 22 Z"/><path class="cf" d="M66 16 L84 40 L100 22 L116 40 L134 16 L100 22 Z"/><path d="M100 22 L100 54" stroke="#151515" stroke-width="2" fill="none"/><circle cx="100" cy="36" r="2" fill="#151515"/><circle cx="100" cy="47" r="2" fill="#151515"/></g>
 <g id="g-felpa" class="capo-g"><path class="cf" d="M64 22 Q100 -8 136 22 L166 32 L188 120 L170 126 L154 70 L154 170 L46 170 L46 70 L30 126 L12 120 L34 32 Z"/><path class="cf" d="M74 22 Q100 50 126 22 Q120 6 100 4 Q80 6 74 22 Z"/><path d="M46 160 L154 160 M70 118 L130 118 L136 150 L64 150 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
 <g id="g-giubbotto" class="capo-g"><path class="cf" d="M64 18 L36 30 L14 120 L32 126 L46 72 L46 178 L154 178 L154 72 L168 126 L186 120 L164 30 L136 18 L100 30 Z"/><path class="cf" d="M64 18 L78 8 L100 30 L122 8 L136 18 L100 30 Z"/><path d="M100 30 L100 178" stroke="#151515" stroke-width="2.5" fill="none"/><path d="M58 130 L84 130 M116 130 L142 130" stroke="#151515" stroke-width="2" fill="none"/></g>
-<g id="g-kit" class="capo-g"><path class="cf" d="M64 8 L40 18 L18 44 L36 58 L46 50 L46 120 L154 120 L154 50 L164 58 L182 44 L160 18 L136 8 Q100 30 64 8 Z"/><path class="cf" d="M56 128 L144 128 L150 182 L106 182 L100 150 L94 182 L50 182 Z"/></g>
+<g id="g-kit" class="capo-g"><path class="cf" d="M70 4 L50 12 L32 34 L46 46 L54 40 L54 92 L146 92 L146 40 L154 46 L168 34 L150 12 L130 4 Q100 22 70 4 Z"/><path class="cf kb" d="M60 98 L140 98 L145 140 L106 140 L100 116 L94 140 L55 140 Z"/><g id="socks"><path class="cf ks" d="M64 146 L82 146 L82 176 L90 182 L90 188 L62 188 Z"/><path class="cf ks" d="M118 146 L136 146 L138 188 L110 188 L110 182 L118 176 Z"/></g></g>
 <g id="g-pantalone" class="capo-g"><path class="cf" d="M58 8 L142 8 L150 184 L110 184 L100 60 L90 184 L50 184 Z"/><path d="M58 22 L142 22 M62 70 L86 70 L86 98 L62 98 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
 </g><rect id="pf" x="63" y="62" width="74" height="40" rx="4" fill="none" stroke="#151515" stroke-width="2" stroke-dasharray="5 4"/><rect id="sqb" x="0" y="0" width="4" height="10" rx="1.5" fill="#000"/><text id="pt" x="100" y="87" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" fill="#151515">IL TUO LOGO</text></svg>
  <div id="views" style="display:flex;gap:4px;align-items:center;justify-content:center"></div><small id="pv">T-shirt bianca, stampa davanti</small>
@@ -137,13 +137,37 @@ h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14
   <label class="capo"><input type="radio" name="capo" value="Kit sportivo (maglia + pantaloncino)|16"><b>Kit sportivo</b><span>da 16 €</span></label>
   <label class="capo"><input type="radio" name="capo" value="Pantalone da lavoro|19"><b>Pantalone</b><span>da 19 €</span></label>
  </div>
- <label class="f">Colore del capo</label>
+ <label class="f" id="collab">Colore del capo</label>
  <div class="sw" id="col">
   <label><input type="radio" name="col" value="bianco|#ffffff" checked aria-label="Bianco"><i style="background:#fff"></i></label>
   <label><input type="radio" name="col" value="nero|#1b1b1f" aria-label="Nero"><i style="background:#1b1b1f"></i></label>
   <label><input type="radio" name="col" value="blu navy|#22305e" aria-label="Blu navy"><i style="background:#22305e"></i></label>
   <label><input type="radio" name="col" value="rosso|#c8262f" aria-label="Rosso"><i style="background:#c8262f"></i></label>
   <label><input type="radio" name="col" value="grigio|#a7a9b0" aria-label="Grigio"><i style="background:#a7a9b0"></i></label>
+ </div>
+
+ <div id="kitx" hidden>
+  <label class="f">Colore dei pantaloncini</label>
+  <div class="sw" id="colb">
+   <label><input type="radio" name="colb" value="bianco|#ffffff" aria-label="Pantaloncini bianchi"><i style="background:#fff"></i></label>
+   <label><input type="radio" name="colb" value="nero|#1b1b1f" checked aria-label="Pantaloncini neri"><i style="background:#1b1b1f"></i></label>
+   <label><input type="radio" name="colb" value="blu navy|#22305e" aria-label="Pantaloncini blu"><i style="background:#22305e"></i></label>
+   <label><input type="radio" name="colb" value="rosso|#c8262f" aria-label="Pantaloncini rossi"><i style="background:#c8262f"></i></label>
+   <label><input type="radio" name="colb" value="giallo|#FDC300" aria-label="Pantaloncini gialli"><i style="background:#FDC300"></i></label>
+  </div>
+  <div class="pills" style="margin-top:14px">
+   <label class="pill"><input type="checkbox" id="calz">Aggiungi i calzettoni (+4 € a kit)</label>
+  </div>
+  <div id="calzc" hidden>
+   <label class="f">Colore dei calzettoni</label>
+   <div class="sw">
+    <label><input type="radio" name="cols" value="bianco|#ffffff" aria-label="Calzettoni bianchi"><i style="background:#fff"></i></label>
+    <label><input type="radio" name="cols" value="nero|#1b1b1f" aria-label="Calzettoni neri"><i style="background:#1b1b1f"></i></label>
+    <label><input type="radio" name="cols" value="blu navy|#22305e" aria-label="Calzettoni blu"><i style="background:#22305e"></i></label>
+    <label><input type="radio" name="cols" value="rosso|#c8262f" checked aria-label="Calzettoni rossi"><i style="background:#c8262f"></i></label>
+    <label><input type="radio" name="cols" value="giallo|#FDC300" aria-label="Calzettoni gialli"><i style="background:#FDC300"></i></label>
+   </div>
+  </div>
  </div>
 </section>
 
@@ -208,15 +232,22 @@ function upd(){
  const [capo,pc]=val('capo'),[col,hex]=val('col'),[pos,pp]=val('pos'),[tec,pt]=val('tec');
  const pezzi=SZ.reduce((a,s)=>a+q[s],0);const sc=pezzi>=50?.25:pezzi>=10?.15:0;
  document.querySelectorAll('.tiers span').forEach(s=>s.classList.toggle('on',(+s.dataset.t)===(pezzi>=50?50:pezzi>=10?10:1)));
- const unit=(+pc+ +pp+ +pt)*(1-sc);const tot=Math.round(unit*pezzi*100)/100;
+ 
  const key={'T-shirt':'tshirt','Polo':'polo','Felpa':'felpa','Giubbotto da lavoro':'giubbotto','Kit sportivo (maglia + pantaloncino)':'kit','Pantalone da lavoro':'pantalone'}[capo]||'tshirt';
  document.querySelectorAll('.capo-g').forEach(g=>g.classList.toggle('on',g.id==='g-'+key));
  document.querySelectorAll('.cf').forEach(e=>e.style.fill=hex);
+ const isKit=key==='kit';$('#kitx').hidden=!isKit;$('#collab').textContent=isKit?'Colore della maglia':'Colore del capo';
+ const calz=isKit&&$('#calz').checked;$('#calzc').hidden=!calz;
+ const [colb,hexb]=val('colb'),[cols,hexs]=val('cols');
+ if(isKit){document.querySelectorAll('.kb').forEach(e=>e.style.fill=hexb);document.querySelectorAll('.ks').forEach(e=>e.style.fill=hexs);$('#socks').style.display=calz?'':'none'}
+ const kitTxt=isKit?(', pantaloncini '+colb+(calz?', calzettoni '+cols:', senza calzettoni')):'';
+ const extraKit=calz?4:0;
+ const unit=(+pc+ +pp+ +pt+extraKit)*(1-sc);const tot=Math.round(unit*pezzi*100)/100;
  const dark=['#1b1b1f','#22305e','#c8262f'].includes(hex);const ink=dark?'#FDC300':'#151515';
  $('#pt').setAttribute('fill',ink);$('#pf').setAttribute('stroke',ink);
  document.querySelectorAll('.capo-g path[stroke]').forEach(e=>e.setAttribute('stroke',dark?'#FDC300':'#151515'));
  const small=pos==='logo sul cuore'||key==='pantalone';
- const bxs={tshirt:[63,62,74,40],polo:[63,66,74,38],felpa:[66,52,68,36],giubbotto:[110,50,34,22],kit:[66,30,68,34],pantalone:[110,84,30,20]}[key];
+ const bxs={tshirt:[63,62,74,40],polo:[63,66,74,38],felpa:[66,52,68,36],giubbotto:[110,50,34,22],kit:[68,30,64,30],pantalone:[110,84,30,20]}[key];
  let [bx,by,bw,bh]=bxs; if(pos==='logo sul cuore'&&key!=='pantalone'&&key!=='giubbotto'){bx=110;bw=30;bh=20;by=bxs[1];}
  $('#pf').setAttribute('x',bx);$('#pf').setAttribute('y',by);$('#pf').setAttribute('width',bw);$('#pf').setAttribute('height',bh);
  $('#pt').setAttribute('x',bx+bw/2);$('#pt').setAttribute('y',by+bh/2+3);$('#pt').setAttribute('font-size',bw<40?4.5:9);
@@ -235,10 +266,10 @@ function upd(){
  if(both){['Fronte','Retro'].forEach(lbl=>{const w=document.createElement('div');const c=A.cloneNode(true);c.removeAttribute('id');c.style.display='';c.querySelectorAll('rect[id="sqb"]').forEach(e=>e.remove());c.querySelectorAll('[id]').forEach(e=>{if(e.id!=='cmyk')e.removeAttribute('id')});if(lbl==='Retro'){c.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}w.appendChild(c);const l=document.createElement('div');l.className='vlab';l.textContent=lbl;w.appendChild(l);V.appendChild(w)})}
  if(back){A.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}else{A.querySelectorAll('.capo-g path:not(.cf),.capo-g circle').forEach(e=>e.style.display='')}
 
- $('#pv').innerHTML=capo+' · '+col+' · '+(back?'vista retro':pos)+'<span class="tecbadge">'+tec.replace('stampa ','')+'</span>';
+ $('#pv').innerHTML=capo.replace(/ \(.*\)/,'')+' · '+col+' · '+(back?'vista retro':pos)+'<span class="tecbadge">'+tec.replace('stampa ','')+'</span>';
  $('#who').textContent=pezzi+(pezzi==1?' pezzo':' pezzi')+' · '+eur(Math.round(unit*100)/100)+' l\'uno';$('#tot').textContent=eur(tot);
  const taglie=SZ.filter(s=>q[s]).map(s=>s+': '+q[s]).join(', ');
- const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', colore '+col,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Testo: '+(tx||'nessuno (vi mando il logo in chat)'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
+ const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', '+(key==='kit'?'maglia ':'colore ')+col+kitTxt,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Testo: '+(tx||'nessuno (vi mando il logo in chat)'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
  const a=$('#send'),p=problema();
  if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia su WhatsApp';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
  else{a.classList.remove('err');a.textContent='Invia su WhatsApp';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
