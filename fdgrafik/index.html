@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preventivo immediato – FD Grafik Olbia (proposta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#151515;--blu:#151515;--mag:#E0A800;--gia:#FDC300;--carta:#FFF7D6;--line:#E4E0D2;--mute:#5E5A4E;--wa:#1F9D55}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 Archivo,Arial,sans-serif;font-stretch:100%}
+.wrap{max-width:560px;margin:0 auto;padding:26px 20px 150px}
+.house{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:var(--blu)}
+.dots{display:flex;gap:3px}.dots i{width:9px;height:9px;border-radius:50%;display:block}
+h1{font-weight:900;font-stretch:118%;font-size:38px;line-height:1;margin:12px 0 10px;letter-spacing:-.5px}
+.lead{color:var(--mute);margin:0;max-width:42ch}
+.step{margin-top:34px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.n{width:28px;height:28px;border-radius:50%;background:var(--blu);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+h2{font-weight:800;font-stretch:110%;font-size:21px;margin:0}
+.preview{display:grid;place-items:center;background:var(--carta);border-radius:18px;padding:18px 0 10px;margin-top:22px}
+.preview svg{width:210px;height:auto}
+.preview small{color:var(--mute);font-size:13px;margin-top:4px}
+.capi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.capo:has(input:checked){color:#151515!important;background:var(--gia)!important;border-color:#151515!important}.capo:has(input:checked) span{color:#3a3a3a!important}
+.capo{position:relative;border:1.5px solid var(--line);border-radius:14px;padding:14px 12px;cursor:pointer;text-align:center}
+.capo input{position:absolute;opacity:0;pointer-events:none}
+.capo b{display:block;font-size:16px}
+.capo span{color:var(--mute);font-size:14px}
+.capo:has(input:checked){border-color:var(--blu);background:var(--blu);color:#fff}
+.capo:has(input:checked) span{color:#C9D0EE}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.sw label{position:relative;cursor:pointer}
+.sw input{position:absolute;opacity:0}
+.sw i{display:block;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line)}
+.sw input:checked+i{outline:3px solid var(--mag);outline-offset:3px}
+.sw input:focus-visible+i{outline:3px solid var(--gia);outline-offset:3px}
+.sizes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media (min-width:520px){.sizes{grid-template-columns:repeat(3,1fr)}}
+.sz{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);border-radius:12px;padding:6px 6px 6px 12px}
+.sz b{font-size:15px}
+.sz div{display:flex;align-items:center;gap:4px}
+.sz button{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--blu);background:#fff;color:var(--blu);font:700 17px/1 Archivo,sans-serif;cursor:pointer}
+.sz output{min-width:20px;text-align:center;font-weight:800}
+.sz.on{border-color:var(--blu);background:var(--carta)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;font-weight:600;font-size:15px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill:has(input:checked){background:var(--carta);border-color:var(--blu);color:var(--blu)}
+.capo:has(input:focus-visible),.pill:has(input:focus-visible),button:focus-visible,a:focus-visible{outline:3px solid var(--gia);outline-offset:2px}
+.tiers{display:flex;gap:6px;margin-top:12px;font-size:13.5px}
+.tiers span{flex:1;text-align:center;padding:7px 4px;border-radius:10px;background:var(--carta);color:var(--mute)}
+.tiers span.on{background:var(--gia);color:var(--ink);font-weight:800}
+label.f{display:block;font-weight:700;font-size:15px;margin:16px 0 6px}
+input[type=text],input[type=tel],input[type=date]{width:100%;font:inherit;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;color:var(--ink);background:#fff}
+input:focus{outline:none;border-color:var(--blu);box-shadow:0 0 0 3px var(--carta)}
+.hint{font-size:14px;color:var(--mute);margin:10px 0 0}
+.note{margin-top:30px;padding:16px;border-radius:14px;background:var(--carta);font-size:15px}
+.demo{color:var(--mute);font-size:13px;margin-top:22px}
+.flag{animation:flag 1.4s}
+@keyframes flag{0%,60%{box-shadow:0 0 0 3px var(--mag)}100%{box-shadow:0 0 0 0 transparent}}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom))}
+.bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.sum{flex:1;min-width:0}
+.sum small{display:block;color:var(--ink);font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sum b{display:block;font-weight:900;font-size:24px;line-height:1.15}
+.send{flex:none;background:var(--wa);color:#fff;border-radius:14px;padding:14px 18px;font-weight:800;font-size:16px;text-decoration:none;text-align:center;max-width:58%}
+.send.err{background:#fff;color:var(--mag);border:1.5px solid var(--mag);font-weight:700;font-size:15px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="house"><span style="background:#FDC300;color:#151515;font-weight:900;padding:3px 8px;border-radius:6px;font-stretch:120%">fd</span>FD Grafik · Olbia</div>
+<h1>Il tuo preventivo, subito</h1>
+<p class="lead">Abbigliamento da lavoro, promozionale e kit sportivi: scegli capo, taglie, stampa o ricamo, vedi il prezzo e ci mandi la richiesta su WhatsApp.</p>
+
+<div class="preview" aria-hidden="true">
+ <svg viewBox="0 0 200 190"><path id="shirt" d="M62 14 L34 26 L8 58 L32 76 L44 64 L44 178 L156 178 L156 64 L168 76 L192 58 L166 26 L138 14 Q100 40 62 14 Z" fill="#fff" stroke="#14183A" stroke-width="2.5" stroke-linejoin="round"/><rect id="pf" x="63" y="62" width="74" height="40" rx="4" fill="none" stroke="#151515" stroke-width="2" stroke-dasharray="5 4"/><text id="pt" x="100" y="87" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" fill="#151515">IL TUO LOGO</text></svg>
+ <small id="pv">T-shirt bianca, stampa davanti</small>
+</div>
+
+<section class="step" aria-labelledby="s1">
+ <div class="sh"><span class="n">1</span><h2 id="s1">Scegli il capo</h2></div>
+ <div class="capi">
+  <label class="capo"><input type="radio" name="capo" value="T-shirt|6" checked><b>T-shirt</b><span>da 6 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Polo|11"><b>Polo</b><span>da 11 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Felpa|18"><b>Felpa</b><span>da 18 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Giubbotto da lavoro|32"><b>Giubbotto</b><span>da 32 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Kit sportivo (maglia + pantaloncino)|16"><b>Kit sportivo</b><span>da 16 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Pantalone da lavoro|19"><b>Pantalone</b><span>da 19 €</span></label>
+ </div>
+ <label class="f">Colore del capo</label>
+ <div class="sw" id="col">
+  <label><input type="radio" name="col" value="bianco|#ffffff" checked aria-label="Bianco"><i style="background:#fff"></i></label>
+  <label><input type="radio" name="col" value="nero|#1b1b1f" aria-label="Nero"><i style="background:#1b1b1f"></i></label>
+  <label><input type="radio" name="col" value="blu navy|#22305e" aria-label="Blu navy"><i style="background:#22305e"></i></label>
+  <label><input type="radio" name="col" value="rosso|#c8262f" aria-label="Rosso"><i style="background:#c8262f"></i></label>
+  <label><input type="radio" name="col" value="grigio|#a7a9b0" aria-label="Grigio"><i style="background:#a7a9b0"></i></label>
+ </div>
+</section>
+
+<section class="step" aria-labelledby="s2">
+ <div class="sh"><span class="n">2</span><h2 id="s2">Quanti per taglia?</h2></div>
+ <div class="sizes" id="sizes"></div>
+ <div class="tiers"><span data-t="1">1-9 pezzi</span><span data-t="10">10-49: −15%</span><span data-t="50">50+: −25%</span></div>
+</section>
+
+<section class="step" aria-labelledby="s3">
+ <div class="sh"><span class="n">3</span><h2 id="s3">Come la stampiamo?</h2></div>
+ <div class="pills" id="pos">
+  <label class="pill"><input type="radio" name="pos" value="davanti|4" checked>Davanti</label>
+  <label class="pill"><input type="radio" name="pos" value="dietro|4">Dietro</label>
+  <label class="pill"><input type="radio" name="pos" value="davanti e dietro|7">Davanti e dietro</label>
+  <label class="pill"><input type="radio" name="pos" value="logo sul cuore|2.5">Logo sul cuore</label>
+ </div>
+ <div class="pills" style="margin-top:10px">
+  <label class="pill"><input type="radio" name="tec" value="stampa 1 colore|0" checked>Stampa 1 colore</label>
+  <label class="pill"><input type="radio" name="tec" value="stampa a colori|2">Stampa a colori</label>
+  <label class="pill"><input type="radio" name="tec" value="ricamo|4">Ricamo</label>
+ </div>
+ <label class="f" for="tx">Testo o nome da stampare (facoltativo)</label>
+ <input type="text" id="tx" maxlength="22" placeholder="Per esempio: Edil Gallura srl">
+ <p class="hint">Il logo ce lo mandi in chat su WhatsApp. Non hai un logo? Lo progettiamo noi.</p>
+</section>
+
+<section class="step" aria-labelledby="s4">
+ <div class="sh"><span class="n">4</span><h2 id="s4">I tuoi dati</h2></div>
+ <label class="f" for="nm">Nome e cognome (o azienda, scuola, squadra)</label><input type="text" id="nm" autocomplete="name" placeholder="Asd Olbia Calcio">
+ <label class="f" for="tl">Telefono</label><input type="tel" id="tl" autocomplete="tel" inputmode="tel" placeholder="333 123 4567">
+ <label class="f" for="dt">Per quando ti servono?</label><input type="date" id="dt">
+</section>
+
+<div class="note"><b>Come funziona:</b> il prezzo qui è indicativo. Ti mandiamo su WhatsApp la bozza grafica da approvare e il preventivo definitivo; la produzione parte con l'approvazione. Per le aziende di Olbia veniamo noi da te.</div>
+<p class="demo">Proposta preparata da Francesco Bilangione per FD Grafik: capi e prezzi sono di prova e si impostano con voi. In questa demo il messaggio arriva a Francesco; nella versione vera arriva al vostro WhatsApp.</p>
+</main>
+
+<div class="bar"><div class="in">
+ <div class="sum"><small id="who">0 pezzi</small><b id="tot">0 €</b></div>
+ <a class="send" id="send" href="#" target="_blank" rel="noopener">Invia su WhatsApp</a>
+</div></div>
+
+<script>
+const NUMERO="393318522753";
+const SZ=['XS','S','M','L','XL','XXL'];const q={XS:0,S:0,M:5,L:5,XL:0,XXL:0};let tried=false;
+const $=s=>document.querySelector(s);const eur=x=>x.toLocaleString('it-IT',{minimumFractionDigits:x%1?2:0,maximumFractionDigits:2})+' €';
+const box=$('#sizes');SZ.forEach(s=>{const d=document.createElement('div');d.className='sz';d.innerHTML=`<b>${s}</b><div><button type="button" aria-label="Togli una ${s}">−</button><output aria-live="polite">${q[s]}</output><button type="button" aria-label="Aggiungi una ${s}">+</button></div>`;const [m,o,p]=d.querySelector('div').children;m.onclick=()=>{q[s]=Math.max(0,q[s]-1);upd()};p.onclick=()=>{q[s]=Math.min(500,q[s]+1);upd()};box.appendChild(d);});
+function val(n){return document.querySelector(`input[name=${n}]:checked`).value.split('|')}
+function problema(){const tot=SZ.reduce((a,s)=>a+q[s],0);if(!tot)return{t:'Aggiungi almeno un pezzo',el:'#sizes'};if(!$('#nm').value.trim())return{t:'Scrivi il nome',el:'#nm'};if($('#tl').value.replace(/\D/g,'').length<9)return{t:'Scrivi il telefono',el:'#tl'};return null;}
+function upd(){
+ [...box.children].forEach((d,i)=>{d.querySelector('output').value=q[SZ[i]];d.classList.toggle('on',q[SZ[i]]>0)});
+ const [capo,pc]=val('capo'),[col,hex]=val('col'),[pos,pp]=val('pos'),[tec,pt]=val('tec');
+ const pezzi=SZ.reduce((a,s)=>a+q[s],0);const sc=pezzi>=50?.25:pezzi>=10?.15:0;
+ document.querySelectorAll('.tiers span').forEach(s=>s.classList.toggle('on',(+s.dataset.t)===(pezzi>=50?50:pezzi>=10?10:1)));
+ const unit=(+pc+ +pp+ +pt)*(1-sc);const tot=Math.round(unit*pezzi*100)/100;
+ $('#shirt').setAttribute('fill',hex);const dark=['#1b1b1f','#22305e','#c8262f'].includes(hex);
+ $('#pt').setAttribute('fill',dark?'#FDC300':'#151515');$('#pf').setAttribute('stroke',dark?'#FDC300':'#151515');
+ const small=pos==='logo sul cuore';$('#pf').setAttribute('x',small?110:63);$('#pf').setAttribute('width',small?30:74);$('#pf').setAttribute('height',small?20:40);$('#pt').setAttribute('x',small?125:100);$('#pt').setAttribute('font-size',small?4.5:9);
+ const tx=$('#tx').value.trim();$('#pt').textContent=(tx||'IL TUO LOGO').toUpperCase().slice(0,small?10:18);
+ $('#pv').textContent=capo+' · colore '+col+' · '+pos;
+ $('#who').textContent=pezzi+(pezzi==1?' pezzo':' pezzi')+' · '+eur(Math.round(unit*100)/100)+' l\'uno';$('#tot').textContent=eur(tot);
+ const taglie=SZ.filter(s=>q[s]).map(s=>s+': '+q[s]).join(', ');
+ const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', colore '+col,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Testo: '+(tx||'nessuno (vi mando il logo in chat)'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
+ const a=$('#send'),p=problema();
+ if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia su WhatsApp';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
+ else{a.classList.remove('err');a.textContent='Invia su WhatsApp';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
+}
+document.addEventListener('input',upd);document.addEventListener('change',upd);upd();
+</script>
+</body>
+</html>
