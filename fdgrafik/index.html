@@ -22,6 +22,7 @@ h1{font-weight:900;font-stretch:118%;font-size:38px;line-height:1;margin:12px 0 
 h2{font-weight:800;font-stretch:110%;font-size:21px;margin:0}
 .preview{display:grid;place-items:center;background:var(--carta);border-radius:18px;padding:18px 0 10px;margin-top:22px}
 .preview svg{width:210px;height:auto}
+.capo-g{display:none}.capo-g.on{display:inline}.cf{fill:#fff;stroke:#151515;stroke-width:2.5;stroke-linejoin:round}
 .preview small{color:var(--mute);font-size:13px;margin-top:4px}
 .capi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .capo:has(input:checked){color:#151515!important;background:var(--gia)!important;border-color:#151515!important}.capo:has(input:checked) span{color:#3a3a3a!important}
@@ -78,7 +79,14 @@ input:focus{outline:none;border-color:var(--blu);box-shadow:0 0 0 3px var(--cart
 <p class="lead">Abbigliamento da lavoro, promozionale e kit sportivi: scegli capo, taglie, stampa o ricamo, vedi il prezzo e ci mandi la richiesta su WhatsApp.</p>
 
 <div class="preview" aria-hidden="true">
- <svg viewBox="0 0 200 190"><path id="shirt" d="M62 14 L34 26 L8 58 L32 76 L44 64 L44 178 L156 178 L156 64 L168 76 L192 58 L166 26 L138 14 Q100 40 62 14 Z" fill="#fff" stroke="#14183A" stroke-width="2.5" stroke-linejoin="round"/><rect id="pf" x="63" y="62" width="74" height="40" rx="4" fill="none" stroke="#151515" stroke-width="2" stroke-dasharray="5 4"/><text id="pt" x="100" y="87" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" fill="#151515">IL TUO LOGO</text></svg>
+ <svg viewBox="0 0 200 190">
+<g id="g-tshirt" class="capo-g"><path class="cf" d="M62 14 L34 26 L8 58 L32 76 L44 64 L44 178 L156 178 L156 64 L168 76 L192 58 L166 26 L138 14 Q100 40 62 14 Z"/></g>
+<g id="g-polo" class="capo-g"><path class="cf" d="M66 16 L36 26 L10 58 L33 75 L45 64 L45 178 L155 178 L155 64 L167 75 L190 58 L164 26 L134 16 L100 22 Z"/><path class="cf" d="M66 16 L84 40 L100 22 L116 40 L134 16 L100 22 Z"/><path d="M100 22 L100 54" stroke="#151515" stroke-width="2" fill="none"/><circle cx="100" cy="36" r="2" fill="#151515"/><circle cx="100" cy="47" r="2" fill="#151515"/></g>
+<g id="g-felpa" class="capo-g"><path class="cf" d="M64 22 Q100 -8 136 22 L166 32 L188 120 L170 126 L154 70 L154 170 L46 170 L46 70 L30 126 L12 120 L34 32 Z"/><path class="cf" d="M74 22 Q100 50 126 22 Q120 6 100 4 Q80 6 74 22 Z"/><path d="M46 160 L154 160 M70 118 L130 118 L136 150 L64 150 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
+<g id="g-giubbotto" class="capo-g"><path class="cf" d="M64 18 L36 30 L14 120 L32 126 L46 72 L46 178 L154 178 L154 72 L168 126 L186 120 L164 30 L136 18 L100 30 Z"/><path class="cf" d="M64 18 L78 8 L100 30 L122 8 L136 18 L100 30 Z"/><path d="M100 30 L100 178" stroke="#151515" stroke-width="2.5" fill="none"/><path d="M58 130 L84 130 M116 130 L142 130" stroke="#151515" stroke-width="2" fill="none"/></g>
+<g id="g-kit" class="capo-g"><path class="cf" d="M64 8 L40 18 L18 44 L36 58 L46 50 L46 120 L154 120 L154 50 L164 58 L182 44 L160 18 L136 8 Q100 30 64 8 Z"/><path class="cf" d="M56 128 L144 128 L150 182 L106 182 L100 150 L94 182 L50 182 Z"/></g>
+<g id="g-pantalone" class="capo-g"><path class="cf" d="M58 8 L142 8 L150 184 L110 184 L100 60 L90 184 L50 184 Z"/><path d="M58 22 L142 22 M62 70 L86 70 L86 98 L62 98 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
+<rect id="pf" x="63" y="62" width="74" height="40" rx="4" fill="none" stroke="#151515" stroke-width="2" stroke-dasharray="5 4"/><text id="pt" x="100" y="87" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" fill="#151515">IL TUO LOGO</text></svg>
  <small id="pv">T-shirt bianca, stampa davanti</small>
 </div>
 
@@ -155,10 +163,18 @@ function upd(){
  const pezzi=SZ.reduce((a,s)=>a+q[s],0);const sc=pezzi>=50?.25:pezzi>=10?.15:0;
  document.querySelectorAll('.tiers span').forEach(s=>s.classList.toggle('on',(+s.dataset.t)===(pezzi>=50?50:pezzi>=10?10:1)));
  const unit=(+pc+ +pp+ +pt)*(1-sc);const tot=Math.round(unit*pezzi*100)/100;
- $('#shirt').setAttribute('fill',hex);const dark=['#1b1b1f','#22305e','#c8262f'].includes(hex);
- $('#pt').setAttribute('fill',dark?'#FDC300':'#151515');$('#pf').setAttribute('stroke',dark?'#FDC300':'#151515');
- const small=pos==='logo sul cuore';$('#pf').setAttribute('x',small?110:63);$('#pf').setAttribute('width',small?30:74);$('#pf').setAttribute('height',small?20:40);$('#pt').setAttribute('x',small?125:100);$('#pt').setAttribute('font-size',small?4.5:9);
- const tx=$('#tx').value.trim();$('#pt').textContent=(tx||'IL TUO LOGO').toUpperCase().slice(0,small?10:18);
+ const key={'T-shirt':'tshirt','Polo':'polo','Felpa':'felpa','Giubbotto da lavoro':'giubbotto','Kit sportivo (maglia + pantaloncino)':'kit','Pantalone da lavoro':'pantalone'}[capo]||'tshirt';
+ document.querySelectorAll('.capo-g').forEach(g=>g.classList.toggle('on',g.id==='g-'+key));
+ document.querySelectorAll('.cf').forEach(e=>e.style.fill=hex);
+ const dark=['#1b1b1f','#22305e','#c8262f'].includes(hex);const ink=dark?'#FDC300':'#151515';
+ $('#pt').setAttribute('fill',ink);$('#pf').setAttribute('stroke',ink);
+ document.querySelectorAll('.capo-g path[stroke]').forEach(e=>e.setAttribute('stroke',dark?'#FDC300':'#151515'));
+ const small=pos==='logo sul cuore'||key==='pantalone';
+ const bxs={tshirt:[63,62,74,40],polo:[63,66,74,38],felpa:[66,52,68,36],giubbotto:[110,50,34,22],kit:[66,30,68,34],pantalone:[110,84,30,20]}[key];
+ let [bx,by,bw,bh]=bxs; if(pos==='logo sul cuore'&&key!=='pantalone'&&key!=='giubbotto'){bx=110;bw=30;bh=20;by=bxs[1];}
+ $('#pf').setAttribute('x',bx);$('#pf').setAttribute('y',by);$('#pf').setAttribute('width',bw);$('#pf').setAttribute('height',bh);
+ $('#pt').setAttribute('x',bx+bw/2);$('#pt').setAttribute('y',by+bh/2+3);$('#pt').setAttribute('font-size',bw<40?4.5:9);
+ const tx=$('#tx').value.trim();$('#pt').textContent=(tx||'IL TUO LOGO').toUpperCase().slice(0,bw<40?10:18);
  $('#pv').textContent=capo+' · colore '+col+' · '+pos;
  $('#who').textContent=pezzi+(pezzi==1?' pezzo':' pezzi')+' · '+eur(Math.round(unit*100)/100)+' l\'uno';$('#tot').textContent=eur(tot);
  const taglie=SZ.filter(s=>q[s]).map(s=>s+': '+q[s]).join(', ');
