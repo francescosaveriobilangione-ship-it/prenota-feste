@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Preventivo per la tua festa – Villa Gemma (proposta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--notte:#2E4A3B;--ink:#1D2620;--nebbia:#EEF3EE;--champ:#A9814B;--rosa:#B5566A;--line:#D9E1DA;--mute:#5D6A61;--wa:#1F9D55}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 Manrope,Arial,sans-serif}
+.wrap{max-width:560px;margin:0 auto;padding:30px 20px 150px}
+.house{font-weight:700;color:var(--notte);font-size:15px;margin:0}
+h1{font:400 40px/1.05 Italiana,Georgia,serif;margin:8px 0 12px;color:var(--notte)}
+.lead{color:var(--mute);margin:0;max-width:42ch}
+.step{margin-top:38px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.n{width:28px;height:28px;border-radius:50%;background:var(--notte);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+h2{font:400 26px/1.15 Italiana,Georgia,serif;margin:0}
+.types{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.type{position:relative;border:1.5px solid var(--line);border-radius:14px;padding:16px 14px;cursor:pointer;transition:background .2s,border-color .2s}
+.type input{position:absolute;opacity:0;pointer-events:none}
+.type b{display:block;font-size:16px}
+.type small{color:var(--mute);font-size:13.5px}
+.type:has(input:checked){background:var(--notte);border-color:var(--notte);color:#fff}
+.type:has(input:checked) small{color:#CFE0D4}
+.type:has(input:focus-visible),.menu:has(input:focus-visible),.pill:has(input:focus-visible){outline:3px solid var(--champ);outline-offset:2px}
+label.f{display:block;font-weight:700;font-size:15px;margin:16px 0 6px}
+input[type=text],input[type=tel],input[type=date],select,textarea{width:100%;font:inherit;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;background:#fff;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--notte);box-shadow:0 0 0 3px var(--nebbia)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.two label.f{margin-top:0}
+textarea{min-height:76px;resize:vertical}
+.guests{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:6px 0}
+.guests output{font:400 52px/1 Italiana,Georgia,serif;color:var(--notte);min-width:3ch;text-align:center}
+.guests button{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--notte);background:#fff;color:var(--notte);font:600 15px/1 Manrope,sans-serif;cursor:pointer}
+.guests button:active{background:var(--nebbia)}
+.guests button:focus-visible{outline:3px solid var(--champ);outline-offset:2px}
+input[type=range]{width:100%;accent-color:var(--notte);margin-top:8px}
+.menus{display:grid;gap:10px}
+.menu{position:relative;display:flex;justify-content:space-between;align-items:center;gap:12px;border:1.5px solid var(--line);border-radius:14px;padding:15px 16px;cursor:pointer}
+.menu input{position:absolute;opacity:0;pointer-events:none}
+.menu b{display:block}
+.menu small{color:var(--mute);font-size:14px}
+.menu .pp{font-weight:800;color:var(--champ);white-space:nowrap}
+.menu:has(input:checked){border-color:var(--notte);background:var(--nebbia)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;font-weight:600;font-size:15px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill:has(input:checked){background:var(--nebbia);border-color:var(--notte);color:var(--notte)}
+.hint{font-size:14px;color:var(--mute);margin:10px 0 0}
+.note{margin-top:30px;padding:16px;border-radius:14px;background:var(--nebbia);font-size:15px}
+.note b{color:var(--notte)}
+.demo{color:var(--mute);font-size:13px;margin-top:24px}
+.flag{animation:flag 1.4s}
+@keyframes flag{0%,60%{box-shadow:0 0 0 3px var(--rosa)}100%{box-shadow:0 0 0 0 transparent}}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom))}
+.bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.sum{flex:1;min-width:0}
+.sum small{display:block;color:var(--ink);font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sum b{display:block;font:800 23px/1.15 Manrope,Arial,sans-serif;color:var(--notte);letter-spacing:-.3px}
+.send{flex:none;background:var(--wa);color:#fff;border-radius:14px;padding:14px 18px;font-weight:800;font-size:16px;text-decoration:none;text-align:center;max-width:58%}
+.send:focus-visible{outline:3px solid var(--champ);outline-offset:2px}
+.send.err{background:#fff;color:var(--rosa);border:1.5px solid var(--rosa);font-weight:700;font-size:15px}
+@media (max-width:380px){.types{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.kids{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px}
+.kids b{display:block}.kids small{color:var(--mute);font-size:14px}
+.kc{display:flex;align-items:center;gap:10px}
+.kc button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--notte);background:#fff;color:var(--notte);font:700 18px/1 Manrope,sans-serif;cursor:pointer}
+.kc output{font-weight:800;font-size:20px;min-width:2ch;text-align:center}
+.place{margin-top:6px}
+</style>
+</head>
+<body>
+<main class="wrap">
+<p class="house">Villa Gemma · Statigliano, Caserta</p>
+<h1>Il preventivo per la tua festa, subito</h1>
+<p class="lead">Scegli evento, invitati e menù: vedi subito una stima e ci mandi la richiesta su WhatsApp. Ti rispondiamo con il preventivo e una data per visitare la villa.</p>
+
+<section class="step" aria-labelledby="s1">
+ <div class="sh"><span class="n">1</span><h2 id="s1">Cosa festeggi?</h2></div>
+ <div class="types">
+  <label class="type"><input type="radio" name="tp" value="Prima Comunione" checked><b>Prima Comunione</b><small>Pranzo dopo la messa</small></label>
+  <label class="type"><input type="radio" name="tp" value="Battesimo"><b>Battesimo</b><small>Pranzo in famiglia</small></label>
+  <label class="type"><input type="radio" name="tp" value="Cresima"><b>Cresima</b><small>Pranzo o cena</small></label>
+  <label class="type"><input type="radio" name="tp" value="Matrimonio"><b>Matrimonio</b><small>Anche rito civile in villa</small></label>
+  <label class="type"><input type="radio" name="tp" value="18 anni o compleanno"><b>18 anni o compleanno</b><small>Festa serale</small></label>
+  <label class="type"><input type="radio" name="tp" value="Anniversario"><b>Anniversario</b><small>25, 30, 50 anni insieme</small></label>
+ </div>
+</section>
+
+<section class="step" aria-labelledby="s2">
+ <div class="sh"><span class="n">2</span><h2 id="s2">Quando?</h2></div>
+ <div class="two">
+  <div><label class="f" for="d1">Data che preferisci</label><input type="date" id="d1"></div>
+  <div><label class="f" for="d2">Data alternativa</label><input type="date" id="d2"></div>
+ </div>
+ <div class="pills" style="margin-top:14px">
+  <label class="pill"><input type="radio" name="mo" value="pranzo" checked>Pranzo</label>
+  <label class="pill"><input type="radio" name="mo" value="cena">Cena</label>
+ </div>
+ <div class="pills" style="margin-top:10px" id="cer">
+  <label class="pill"><input type="checkbox" id="chiesa" value="Messa nella chiesa del borgo">Messa nella chiesa del borgo, a 500 m</label>
+ </div>
+</section>
+
+<section class="step" aria-labelledby="s3">
+ <div class="sh"><span class="n">3</span><h2 id="s3">Quanti invitati?</h2></div>
+ <div class="guests"><button type="button" id="gm" aria-label="Togli 10 adulti">−10</button><output id="gn" aria-live="polite">80</output><button type="button" id="gp" aria-label="Aggiungi 10 adulti">+10</button></div>
+ <input type="range" id="gr" min="20" max="400" step="5" value="80" aria-label="Numero di adulti">
+ <p class="hint" style="text-align:center;margin-top:2px">adulti</p>
+ <div class="kids"><span><b>Bambini fino a 10 anni</b><small>Menù bambini da 30 €</small></span><span class="kc"><button type="button" id="km" aria-label="Togli un bambino">−</button><output id="kn">15</output><button type="button" id="kp" aria-label="Aggiungi un bambino">+</button></span></div>
+</section>
+
+<section class="step" aria-labelledby="s4">
+ <div class="sh"><span class="n">4</span><h2 id="s4">Scegli il menù</h2></div>
+ <div class="menus">
+  <label class="menu"><input type="radio" name="mn" value="Tradizione|60" checked><span><b>Tradizione</b><small>Antipasto della casa, due primi, secondo, torta</small></span><span class="pp">da 60 €</span></label>
+  <label class="menu"><input type="radio" name="mn" value="Gemma|75"><span><b>Gemma</b><small>Aperitivo in giardino, tre portate, buffet di frutta</small></span><span class="pp">da 75 €</span></label>
+  <label class="menu"><input type="radio" name="mn" value="Gran ricevimento|90"><span><b>Gran ricevimento</b><small>Aperitivo, isole a tema, cena servita, angolo dolci</small></span><span class="pp">da 90 €</span></label>
+ </div>
+ <p class="hint">Prezzi a persona, bevande incluse. Menù personalizzabili con lo chef.</p>
+</section>
+
+<section class="step" aria-labelledby="s5">
+ <div class="sh"><span class="n">5</span><h2 id="s5">Dove e con cosa?</h2></div>
+ <div class="pills place">
+  <label class="pill"><input type="radio" name="sp" value="sala con le vetrate sul parco" checked>Sala con le vetrate</label>
+  <label class="pill"><input type="radio" name="sp" value="giardino e terrazza">Giardino e terrazza</label>
+  <label class="pill"><input type="radio" name="sp" value="da decidere alla visita">Decidiamo alla visita</label>
+ </div>
+ <label class="f">Extra</label>
+ <div class="pills" id="ex">
+  <label class="pill"><input type="checkbox" value="Animazione bambini|350">Animazione bambini</label>
+  <label class="pill"><input type="checkbox" value="Confettata e angolo dolci|400">Confettata e angolo dolci</label>
+  <label class="pill"><input type="checkbox" value="Torta scenografica|250">Torta scenografica</label>
+  <label class="pill"><input type="checkbox" value="Allestimento a tema|500">Allestimento a tema</label>
+  <label class="pill"><input type="checkbox" value="Musica e DJ|600">Musica e DJ</label>
+  <label class="pill"><input type="checkbox" value="Open bar|8pp">Open bar</label>
+ </div>
+ <label class="f" for="nt">Qualcos'altro che dobbiamo sapere?</label>
+ <textarea id="nt" placeholder="Per esempio: due invitati celiaci, tema farfalle, vorremmo le foto nel parco"></textarea>
+</section>
+
+<section class="step" aria-labelledby="s6">
+ <div class="sh"><span class="n">6</span><h2 id="s6">I tuoi dati</h2></div>
+ <label class="f" for="nm">Nome e cognome</label><input type="text" id="nm" autocomplete="name" placeholder="Anna Russo">
+ <label class="f" for="tl">Telefono</label><input type="tel" id="tl" autocomplete="tel" inputmode="tel" placeholder="333 123 4567">
+ <label class="f" for="vs">Vuoi visitare la villa?</label>
+ <select id="vs"><option>Sì, in settimana</option><option>Sì, nel weekend</option><option>Prima vorrei il preventivo</option></select>
+</section>
+
+<div class="note"><b>Come funziona:</b> la stima qui sotto è indicativa. Ti mandiamo su WhatsApp il preventivo preciso e la disponibilità della data. La data si blocca con un acconto, dopo la visita.</div>
+<p class="demo">Proposta preparata da Francesco Bilangione per Villa Gemma: menù, extra e prezzi sono di prova e si impostano con voi. In questa demo il messaggio arriva a Francesco; nella versione vera arriva al vostro WhatsApp.</p>
+</main>
+
+<div class="bar"><div class="in">
+ <div class="sum"><small id="who">Prima Comunione, 80 adulti</small><b id="tot">da 5.250 €</b></div>
+ <a class="send" id="send" href="#" target="_blank" rel="noopener">Invia la richiesta</a>
+</div></div>
+
+<script>
+const NUMERO="393318522753";
+let g=80,k=15,tried=false;
+const $=s=>document.querySelector(s);
+const eur=x=>x.toLocaleString('it-IT')+' €';
+const fd=v=>v?v.split('-').reverse().join('/'):'';
+function problema(){
+ if(!$('#d1').value)return{t:'Scegli la data',el:'#d1'};
+ if(!$('#nm').value.trim())return{t:'Scrivi nome e cognome',el:'#nm'};
+ if($('#tl').value.replace(/\D/g,'').length<9)return{t:'Scrivi il telefono',el:'#tl'};
+ return null;}
+function upd(){
+ $('#gn').value=g;$('#gr').value=g;$('#kn').value=k;
+ const tp=document.querySelector('input[name=tp]:checked').value;
+ const lab=$('#chiesa').parentElement;
+ if(tp==='Matrimonio'){lab.lastChild.textContent='Rito civile in villa (Casa Comunale)';$('#chiesa').value='Rito civile in villa';}
+ else{lab.lastChild.textContent='Messa nella chiesa del borgo, a 500 m';$('#chiesa').value='Messa nella chiesa del borgo';}
+ const mo=document.querySelector('input[name=mo]:checked').value;
+ const sp=document.querySelector('input[name=sp]:checked').value;
+ const [mn,pp]=document.querySelector('input[name=mn]:checked').value.split('|');
+ let tot=g*(+pp)+k*30;const ex=[];
+ document.querySelectorAll('#ex input:checked').forEach(i=>{const [n,c]=i.value.split('|');ex.push(n);tot+=c.endsWith('pp')?g*parseInt(c):+c;});
+ $('#who').textContent=tp+', '+g+' adulti'+(k?' e '+k+' bambini':'')+', menù '+mn;
+ $('#tot').textContent='da '+eur(tot);
+ const msg=['Buongiorno! Vorrei un preventivo da Villa Gemma.','','Evento: '+tp+' ('+mo+')','Data: '+fd($('#d1').value)+($('#d2').value?' (in alternativa '+fd($('#d2').value)+')':''),($('#chiesa').checked?'Cerimonia: '+$('#chiesa').value:'Cerimonia: altrove o nessuna'),'Invitati: '+g+' adulti'+(k?' + '+k+' bambini':''),'Menù: '+mn+' (da '+pp+' € a persona)','Spazio: '+sp,'Extra: '+(ex.join(', ')||'nessuno'),'Note: '+($('#nt').value.trim()||'nessuna'),'Visita alla villa: '+$('#vs').value,'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Stima indicata dal modulo: da '+eur(tot)].join('\n');
+ const a=$('#send'),p=problema();
+ if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia la richiesta';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
+ else{a.classList.remove('err');a.textContent='Invia la richiesta';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
+}
+$('#gm').onclick=()=>{g=Math.max(20,g-10);upd()};
+$('#gp').onclick=()=>{g=Math.min(400,g+10);upd()};
+$('#gr').oninput=e=>{g=+e.target.value;upd()};
+$('#km').onclick=()=>{k=Math.max(0,k-1);upd()};
+$('#kp').onclick=()=>{k=Math.min(150,k+1);upd()};
+document.addEventListener('input',upd);document.addEventListener('change',upd);upd();
+</script>
+</body>
+</html>
