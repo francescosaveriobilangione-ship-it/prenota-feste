@@ -106,6 +106,12 @@ h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14
 @keyframes swap{from{transform:scale(.94)}to{transform:scale(1)}}
 #pt{transition:clip-path .55s cubic-bezier(.5,0,.2,1)}
 @media (prefers-reduced-motion:reduce){#pt{transition:none}#sqb{display:none}}
+
+.prow{display:grid;grid-template-columns:1fr 58px 70px 34px;gap:6px;margin-top:8px}
+.prow input,.prow select{width:100%;font:inherit;font-size:15px;padding:10px 8px;border:1.5px solid #000;border-radius:10px;background:#fff;color:#000}
+.prow button{border:1.5px solid #000;border-radius:10px;background:#fff;font-weight:800;cursor:pointer}
+.addp{margin-top:10px;background:#000;color:#FDC300;border:0;border-radius:999px;padding:10px 16px;font:inherit;font-weight:800;cursor:pointer}
+.sizes.locked{opacity:.45;pointer-events:none}
 </style>
 </head>
 <body>
@@ -168,6 +174,14 @@ h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14
     <label><input type="radio" name="cols" value="giallo|#FDC300" aria-label="Calzettoni gialli"><i style="background:#FDC300"></i></label>
    </div>
   </div>
+  <div class="pills" style="margin-top:14px">
+   <label class="pill"><input type="checkbox" id="nn">Nome e numero sul retro (+3 € a kit)</label>
+  </div>
+  <div id="roster" hidden>
+   <p class="hint" style="margin-top:12px">Scrivi i giocatori: le quantità per taglia le calcoliamo da qui.</p>
+   <div id="rows"></div>
+   <button type="button" id="addp" class="addp">+ Aggiungi giocatore</button>
+  </div>
  </div>
 </section>
 
@@ -227,7 +241,16 @@ function stampa(bx,by,bw,bh){const pt=document.getElementById('pt'),q=document.g
  requestAnimationFrame(()=>{pt.style.clipPath='inset(0 0% 0 0)'});
  q.setAttribute('y',by-3);q.setAttribute('height',bh+6);
  q.animate([{transform:`translateX(${bx}px)`,opacity:1},{transform:`translateX(${bx+bw}px)`,opacity:1},{transform:`translateX(${bx+bw}px)`,opacity:0}],{duration:620,easing:'cubic-bezier(.5,0,.2,1)'});}
+
+let players=[{n:'Rossi',num:'10',t:'M'},{n:'Bianchi',num:'7',t:'L'},{n:'Esposito',num:'9',t:'M'}];
+function renderRows(){const R=document.getElementById('rows');R.innerHTML='';players.forEach((pl,i)=>{const d=document.createElement('div');d.className='prow';
+ d.innerHTML=`<input type="text" maxlength="14" placeholder="Nome" value="${pl.n}" aria-label="Nome giocatore ${i+1}"><input type="text" inputmode="numeric" maxlength="2" placeholder="N°" value="${pl.num}" aria-label="Numero giocatore ${i+1}"><select aria-label="Taglia giocatore ${i+1}">${SZ.map(z=>`<option${z===pl.t?' selected':''}>${z}</option>`).join('')}</select><button type="button" aria-label="Togli giocatore ${i+1}">×</button>`;
+ const [a,b,c,x]=d.children;a.oninput=()=>{pl.n=a.value;upd()};b.oninput=()=>{pl.num=b.value.replace(/\D/g,'');b.value=pl.num;upd()};c.onchange=()=>{pl.t=c.value;upd()};x.onclick=()=>{players.splice(i,1);renderRows();upd()};R.appendChild(d)})}
+document.getElementById('addp').onclick=()=>{players.push({n:'',num:'',t:'M'});renderRows();upd();const ins=document.querySelectorAll('#rows input[type=text]');ins[ins.length-2]?.focus()};
 function upd(){
+ const rosterOn=val('capo')[0].startsWith('Kit')&&document.getElementById('nn').checked;
+ document.getElementById('roster').hidden=!rosterOn;box.classList.toggle('locked',rosterOn);
+ if(rosterOn){SZ.forEach(z=>q[z]=0);players.forEach(pl=>q[pl.t]++)}
  [...box.children].forEach((d,i)=>{d.querySelector('output').value=q[SZ[i]];d.classList.toggle('on',q[SZ[i]]>0)});
  const [capo,pc]=val('capo'),[col,hex]=val('col'),[pos,pp]=val('pos'),[tec,pt]=val('tec');
  const pezzi=SZ.reduce((a,s)=>a+q[s],0);const sc=pezzi>=50?.25:pezzi>=10?.15:0;
@@ -241,7 +264,7 @@ function upd(){
  const [colb,hexb]=val('colb'),[cols,hexs]=val('cols');
  if(isKit){document.querySelectorAll('.kb').forEach(e=>e.style.fill=hexb);document.querySelectorAll('.ks').forEach(e=>e.style.fill=hexs);$('#socks').style.display=calz?'':'none'}
  const kitTxt=isKit?(', pantaloncini '+colb+(calz?', calzettoni '+cols:', senza calzettoni')):'';
- const extraKit=calz?4:0;
+ const extraKit=(calz?4:0)+(rosterOn?3:0);
  const unit=(+pc+ +pp+ +pt+extraKit)*(1-sc);const tot=Math.round(unit*pezzi*100)/100;
  const dark=['#1b1b1f','#22305e','#c8262f'].includes(hex);const ink=dark?'#FDC300':'#151515';
  $('#pt').setAttribute('fill',ink);$('#pf').setAttribute('stroke',ink);
@@ -262,19 +285,20 @@ function upd(){
  const pf=document.getElementById('pf');pf.setAttribute('stroke-dasharray',tec==='ricamo'?'2.2 1.8':'5 4');pf.setAttribute('stroke-width',tec==='ricamo'?'1.6':'2');pf.setAttribute('rx',tec==='ricamo'?'9':'4');pf.setAttribute('fill',tec==='ricamo'?(dark?'rgba(253,195,0,.18)':'rgba(0,0,0,.07)'):'none');if(tec!=='ricamo')ptx.setAttribute('font-weight','800')
  // viste fronte / retro
  const A=document.getElementById('svgA'),V=document.getElementById('views');V.innerHTML='';
- A.style.display=both?'none':'';
- if(both){['Fronte','Retro'].forEach(lbl=>{const w=document.createElement('div');const c=A.cloneNode(true);c.removeAttribute('id');c.style.display='';c.querySelectorAll('rect[id="sqb"]').forEach(e=>e.remove());c.querySelectorAll('[id]').forEach(e=>{if(e.id!=='cmyk')e.removeAttribute('id')});if(lbl==='Retro'){c.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}w.appendChild(c);const l=document.createElement('div');l.className='vlab';l.textContent=lbl;w.appendChild(l);V.appendChild(w)})}
+ const showBoth=both||rosterOn;A.style.display=showBoth?'none':'';
+ if(showBoth){['Fronte','Retro'].forEach(lbl=>{const w=document.createElement('div');const c=A.cloneNode(true);c.removeAttribute('id');c.style.display='';c.querySelectorAll('rect[id="sqb"]').forEach(e=>e.remove());c.querySelectorAll('[id]').forEach(e=>{if(e.id!=='cmyk')e.removeAttribute('id')});if(lbl==='Retro'){c.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}if(lbl==='Retro'&&rosterOn){const p0=players.find(x=>x.n||x.num)||{n:'NOME',num:'10'};const t=c.querySelector('text');const ink=t.getAttribute('fill');const fr=t.parentNode.querySelector('rect[stroke-dasharray]');if(fr)fr.remove();if(!both)t.remove();const NS='http://www.w3.org/2000/svg';const nm=document.createElementNS(NS,'text');nm.setAttribute('x',100);nm.setAttribute('y',30);nm.setAttribute('text-anchor','middle');nm.setAttribute('font-family','Archivo,sans-serif');nm.setAttribute('font-weight','900');nm.setAttribute('font-size','11');nm.setAttribute('fill',ink);nm.textContent=(p0.n||'NOME').toUpperCase();const nu=nm.cloneNode();nu.setAttribute('y',76);nu.setAttribute('font-size','40');nu.textContent=p0.num||'10';c.appendChild(nm);c.appendChild(nu);if(both){t.setAttribute('y',88);t.style.display='none'}}w.appendChild(c);const l=document.createElement('div');l.className='vlab';l.textContent=lbl;w.appendChild(l);V.appendChild(w)})}
  if(back){A.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}else{A.querySelectorAll('.capo-g path:not(.cf),.capo-g circle').forEach(e=>e.style.display='')}
 
  $('#pv').innerHTML=capo.replace(/ \(.*\)/,'')+' · '+col+' · '+(back?'vista retro':pos)+'<span class="tecbadge">'+tec.replace('stampa ','')+'</span>';
  $('#who').textContent=pezzi+(pezzi==1?' pezzo':' pezzi')+' · '+eur(Math.round(unit*100)/100)+' l\'uno';$('#tot').textContent=eur(tot);
  const taglie=SZ.filter(s=>q[s]).map(s=>s+': '+q[s]).join(', ');
- const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', '+(key==='kit'?'maglia ':'colore ')+col+kitTxt,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Testo: '+(tx||'nessuno (vi mando il logo in chat)'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
+ const rosterTxt=rosterOn?['','Nomi e numeri sul retro:',...players.filter(x=>x.n||x.num).map(x=>(x.num||'-')+' '+(x.n||'-').toUpperCase()+' ('+x.t+')')]:[];
+ const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', '+(key==='kit'?'maglia ':'colore ')+col+kitTxt,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Testo: '+(tx||'nessuno (vi mando il logo in chat)'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'',...rosterTxt,'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
  const a=$('#send'),p=problema();
  if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia su WhatsApp';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
  else{a.classList.remove('err');a.textContent='Invia su WhatsApp';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
 }
-document.addEventListener('input',upd);document.addEventListener('change',upd);upd();
+document.addEventListener('input',upd);document.addEventListener('change',upd);renderRows();upd();
 </script>
 </body>
 </html>
