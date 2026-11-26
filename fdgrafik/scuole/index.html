@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Magliette e felpe di classe – FD Grafik Olbia (proposta)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#151515;--blu:#151515;--mag:#E0A800;--gia:#FDC300;--carta:#FFF7D6;--line:#E4E0D2;--mute:#5E5A4E;--wa:#1F9D55}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.5 Archivo,Arial,sans-serif;font-stretch:100%}
+.wrap{max-width:560px;margin:0 auto;padding:26px 20px 150px}
+.house{display:flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:var(--blu)}
+.dots{display:flex;gap:3px}.dots i{width:9px;height:9px;border-radius:50%;display:block}
+h1{font-weight:900;font-stretch:118%;font-size:38px;line-height:1;margin:12px 0 10px;letter-spacing:-.5px}
+.lead{color:var(--mute);margin:0;max-width:42ch}
+.step{margin-top:34px}
+.sh{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.n{width:28px;height:28px;border-radius:50%;background:var(--blu);color:#fff;display:grid;place-items:center;font-weight:800;font-size:14px;flex:none}
+h2{font-weight:800;font-stretch:110%;font-size:21px;margin:0}
+.preview{display:grid;place-items:center;background:var(--carta);border-radius:18px;padding:18px 0 10px;margin-top:22px}
+.preview svg{width:210px;height:auto}
+#gar{transform-origin:100px 100px;transform-box:view-box}.capo-g{display:none}.capo-g.on{display:inline}.cf{fill:#fff;stroke:#151515;stroke-width:2.5;stroke-linejoin:round}
+.preview small{color:var(--mute);font-size:13px;margin-top:4px}
+.capi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.capo:has(input:checked){color:#151515!important;background:var(--gia)!important;border-color:#151515!important}.capo:has(input:checked) span{color:#3a3a3a!important}
+.capo{position:relative;border:1.5px solid var(--line);border-radius:14px;padding:14px 12px;cursor:pointer;text-align:center}
+.capo input{position:absolute;opacity:0;pointer-events:none}
+.capo b{display:block;font-size:16px}
+.capo span{color:var(--mute);font-size:14px}
+.capo:has(input:checked){border-color:var(--blu);background:var(--blu);color:#fff}
+.capo:has(input:checked) span{color:#C9D0EE}
+.sw{display:flex;gap:10px;flex-wrap:wrap}
+.sw label{position:relative;cursor:pointer}
+.sw input{position:absolute;opacity:0}
+.sw i{display:block;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line)}
+.sw input:checked+i{outline:3px solid var(--mag);outline-offset:3px}
+.sw input:focus-visible+i{outline:3px solid var(--gia);outline-offset:3px}
+.sizes{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media (min-width:520px){.sizes{grid-template-columns:repeat(3,1fr)}}
+.sz{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--line);border-radius:12px;padding:6px 6px 6px 12px}
+.sz b{font-size:15px}
+.sz div{display:flex;align-items:center;gap:4px}
+.sz button{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--blu);background:#fff;color:var(--blu);font:700 17px/1 Archivo,sans-serif;cursor:pointer}
+.sz output{min-width:20px;text-align:center;font-weight:800}
+.sz.on{border-color:var(--blu);background:var(--carta)}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{position:relative;border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;cursor:pointer;font-weight:600;font-size:15px}
+.pill input{position:absolute;opacity:0;pointer-events:none}
+.pill:has(input:checked){background:var(--carta);border-color:var(--blu);color:var(--blu)}
+.capo:has(input:focus-visible),.pill:has(input:focus-visible),button:focus-visible,a:focus-visible{outline:3px solid var(--gia);outline-offset:2px}
+.tiers{display:flex;gap:6px;margin-top:12px;font-size:13.5px}
+.tiers span{flex:1;text-align:center;padding:7px 4px;border-radius:10px;background:var(--carta);color:var(--mute)}
+.tiers span.on{background:var(--gia);color:var(--ink);font-weight:800}
+label.f{display:block;font-weight:700;font-size:15px;margin:16px 0 6px}
+input[type=text],input[type=tel],input[type=date]{width:100%;font:inherit;padding:12px 13px;border:1.5px solid var(--line);border-radius:12px;color:var(--ink);background:#fff}
+input:focus{outline:none;border-color:var(--blu);box-shadow:0 0 0 3px var(--carta)}
+.hint{font-size:14px;color:var(--mute);margin:10px 0 0}
+.note{margin-top:30px;padding:16px;border-radius:14px;background:var(--carta);font-size:15px}
+.demo{color:var(--mute);font-size:13px;margin-top:22px}
+.flag{animation:flag 1.4s}
+@keyframes flag{0%,60%{box-shadow:0 0 0 3px var(--mag)}100%{box-shadow:0 0 0 0 transparent}}
+.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom))}
+.bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.sum{flex:1;min-width:0}
+.sum small{display:block;color:var(--ink);font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sum b{display:block;font-weight:900;font-size:24px;line-height:1.15}
+.send{flex:none;background:var(--wa);color:#fff;border-radius:14px;padding:14px 18px;font-weight:800;font-size:16px;text-decoration:none;text-align:center;max-width:58%}
+.send.err{background:#fff;color:var(--mag);border:1.5px solid var(--mag);font-weight:700;font-size:15px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== Restyle FD Grafik ===== */
+body{background:#FDC300;color:#000}
+.wrap{padding-top:22px}
+.house{color:#000}
+.house span{background:#000!important;color:#FDC300!important}
+h1{font-size:44px;font-stretch:125%;letter-spacing:-1px;color:#000;margin-top:14px}
+.lead{color:#2a2200;font-weight:500}
+.preview{background:#fff;border:2.5px solid #000;border-radius:20px;box-shadow:7px 7px 0 #000;margin:24px 6px 0 0;padding:16px 0 10px;position:sticky;top:10px;z-index:5}
+.preview svg{width:190px}
+#views svg{width:150px}
+.vlab{font-weight:800;font-size:12px;text-align:center;margin-top:-4px}
+.tecbadge{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:#000;color:#FDC300;font-weight:800;font-size:12px}
+.preview small{color:#3d3d3d;font-weight:600}
+.panel{background:#fff;border:2.5px solid #000;border-radius:22px;padding:4px 18px 22px;margin-top:30px}
+.panel .step:first-child{margin-top:22px}
+.n{background:#000;color:#FDC300}
+.capo,.pill,.sz,input[type=text],input[type=tel],input[type=date]{border-color:#000!important;border-width:1.5px}
+.capo:has(input:checked){background:#FDC300!important;color:#000!important;border-width:2.5px!important}
+.pill:has(input:checked){background:#000;color:#FDC300;border-color:#000}
+.sz.on{background:#FFF3C2}
+.sz button{border-color:#000;color:#000}
+.sw input:checked+i{outline-color:#000}
+.tiers span{background:#F2F2F2;color:#555}
+.tiers span.on{background:#000;color:#FDC300}
+.note{background:#FFF3C2;border:1.5px solid #000}
+.demo{color:#2a2200}
+.bar{background:#000;border-top:0}
+.sum small{color:#fff}
+.sum b{color:#FDC300}
+.send.err{background:#000;color:#FDC300;border-color:#FDC300}
+#sqb{opacity:0}
+.swap{animation:swap .28s cubic-bezier(.3,1.4,.6,1)}
+@keyframes swap{from{transform:scale(.94)}to{transform:scale(1)}}
+#pt{transition:clip-path .55s cubic-bezier(.5,0,.2,1)}
+@media (prefers-reduced-motion:reduce){#pt{transition:none}#sqb{display:none}}
+
+.prow{display:grid;grid-template-columns:1fr 58px 70px 34px;gap:6px;margin-top:8px}
+.prow input,.prow select{width:100%;font:inherit;font-size:15px;padding:10px 8px;border:1.5px solid #000;border-radius:10px;background:#fff;color:#000}
+.prow button{border:1.5px solid #000;border-radius:10px;background:#fff;font-weight:800;cursor:pointer}
+.addp{margin-top:10px;background:#000;color:#FDC300;border:0;border-radius:999px;padding:10px 16px;font:inherit;font-weight:800;cursor:pointer}
+.sizes.locked{opacity:.45;pointer-events:none}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="house"><span style="background:#FDC300;color:#151515;font-weight:900;padding:3px 8px;border-radius:6px;font-stretch:120%">fd</span>FD Grafik · Olbia</div>
+<h1>Le magliette della tua classe</h1>
+<p class="lead">Per scuole e classi: scegli capo e colore, scrivi scuola e classe, inserisci le taglie e vedi subito il prezzo. La richiesta ci arriva su WhatsApp.</p>
+
+<div class="preview" aria-hidden="true">
+ <svg viewBox="0 0 200 190" id="svgA"><defs><linearGradient id="cmyk" x1="0" x2="1"><stop offset="0" stop-color="#00A3E0"/><stop offset=".5" stop-color="#E0007A"/><stop offset="1" stop-color="#F2B800"/></linearGradient></defs>
+<g id="gar"><g id="g-tshirt" class="capo-g"><path class="cf" d="M62 14 L34 26 L8 58 L32 76 L44 64 L44 178 L156 178 L156 64 L168 76 L192 58 L166 26 L138 14 Q100 40 62 14 Z"/></g>
+<g id="g-polo" class="capo-g"><path class="cf" d="M66 16 L36 26 L10 58 L33 75 L45 64 L45 178 L155 178 L155 64 L167 75 L190 58 L164 26 L134 16 L100 22 Z"/><path class="cf" d="M66 16 L84 40 L100 22 L116 40 L134 16 L100 22 Z"/><path d="M100 22 L100 54" stroke="#151515" stroke-width="2" fill="none"/><circle cx="100" cy="36" r="2" fill="#151515"/><circle cx="100" cy="47" r="2" fill="#151515"/></g>
+<g id="g-felpa" class="capo-g"><path class="cf" d="M64 22 Q100 -8 136 22 L166 32 L188 120 L170 126 L154 70 L154 170 L46 170 L46 70 L30 126 L12 120 L34 32 Z"/><path class="cf" d="M74 22 Q100 50 126 22 Q120 6 100 4 Q80 6 74 22 Z"/><path d="M46 160 L154 160 M70 118 L130 118 L136 150 L64 150 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
+<g id="g-giubbotto" class="capo-g"><path class="cf" d="M64 18 L36 30 L14 120 L32 126 L46 72 L46 178 L154 178 L154 72 L168 126 L186 120 L164 30 L136 18 L100 30 Z"/><path class="cf" d="M64 18 L78 8 L100 30 L122 8 L136 18 L100 30 Z"/><path d="M100 30 L100 178" stroke="#151515" stroke-width="2.5" fill="none"/><path d="M58 130 L84 130 M116 130 L142 130" stroke="#151515" stroke-width="2" fill="none"/></g>
+<g id="g-kit" class="capo-g"><path class="cf" d="M70 4 L50 12 L32 34 L46 46 L54 40 L54 92 L146 92 L146 40 L154 46 L168 34 L150 12 L130 4 Q100 22 70 4 Z"/><path class="cf kb" d="M60 98 L140 98 L145 140 L106 140 L100 116 L94 140 L55 140 Z"/><text class="snum" x="76" y="132" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="900" font-size="13" style="display:none">10</text><g id="socks"><path class="cf ks" d="M64 146 L82 146 L82 176 L90 182 L90 188 L62 188 Z"/><path class="cf ks" d="M118 146 L136 146 L138 188 L110 188 L110 182 L118 176 Z"/></g></g>
+<g id="g-pantalone" class="capo-g"><path class="cf" d="M58 8 L142 8 L150 184 L110 184 L100 60 L90 184 L50 184 Z"/><path d="M58 22 L142 22 M62 70 L86 70 L86 98 L62 98 Z" stroke="#151515" stroke-width="2" fill="none"/></g>
+</g><rect id="pf" x="63" y="62" width="74" height="40" rx="4" fill="none" stroke="#151515" stroke-width="2" stroke-dasharray="5 4"/><rect id="sqb" x="0" y="0" width="4" height="10" rx="1.5" fill="#000"/><text id="pt" x="100" y="87" text-anchor="middle" font-family="Archivo,sans-serif" font-weight="800" font-size="9" fill="#151515">IL TUO LOGO</text></svg>
+ <div id="views" style="display:flex;gap:4px;align-items:center;justify-content:center"></div><small id="pv">T-shirt bianca, stampa davanti</small>
+</div>
+
+<div class="panel">
+<section class="step" aria-labelledby="s1">
+ <div class="sh"><span class="n">1</span><h2 id="s1">Scegli il capo</h2></div>
+ <div class="capi">
+  <label class="capo"><input type="radio" name="capo" value="T-shirt|6" checked><b>T-shirt</b><span>da 6 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Polo|11"><b>Polo</b><span>da 11 €</span></label>
+  <label class="capo"><input type="radio" name="capo" value="Felpa|18"><b>Felpa</b><span>da 18 €</span></label>
+ </div>
+ <label class="f" id="collab">Colore del capo</label>
+ <div class="sw" id="col">
+  <label><input type="radio" name="col" value="bianco|#ffffff" checked aria-label="Bianco"><i style="background:#fff"></i></label>
+  <label><input type="radio" name="col" value="nero|#1b1b1f" aria-label="Nero"><i style="background:#1b1b1f"></i></label>
+  <label><input type="radio" name="col" value="blu navy|#22305e" aria-label="Blu navy"><i style="background:#22305e"></i></label>
+  <label><input type="radio" name="col" value="rosso|#c8262f" aria-label="Rosso"><i style="background:#c8262f"></i></label>
+  <label><input type="radio" name="col" value="grigio|#a7a9b0" aria-label="Grigio"><i style="background:#a7a9b0"></i></label>
+ </div>
+
+ <div id="kitx" hidden>
+  <label class="f">Colore dei pantaloncini</label>
+  <div class="sw" id="colb">
+   <label><input type="radio" name="colb" value="bianco|#ffffff" aria-label="Pantaloncini bianchi"><i style="background:#fff"></i></label>
+   <label><input type="radio" name="colb" value="nero|#1b1b1f" checked aria-label="Pantaloncini neri"><i style="background:#1b1b1f"></i></label>
+   <label><input type="radio" name="colb" value="blu navy|#22305e" aria-label="Pantaloncini blu"><i style="background:#22305e"></i></label>
+   <label><input type="radio" name="colb" value="rosso|#c8262f" aria-label="Pantaloncini rossi"><i style="background:#c8262f"></i></label>
+   <label><input type="radio" name="colb" value="giallo|#FDC300" aria-label="Pantaloncini gialli"><i style="background:#FDC300"></i></label>
+  </div>
+  <div class="pills" style="margin-top:14px">
+   <label class="pill"><input type="checkbox" id="calz">Aggiungi i calzettoni (+4 € a kit)</label>
+  </div>
+  <div id="calzc" hidden>
+   <label class="f">Colore dei calzettoni</label>
+   <div class="sw">
+    <label><input type="radio" name="cols" value="bianco|#ffffff" aria-label="Calzettoni bianchi"><i style="background:#fff"></i></label>
+    <label><input type="radio" name="cols" value="nero|#1b1b1f" aria-label="Calzettoni neri"><i style="background:#1b1b1f"></i></label>
+    <label><input type="radio" name="cols" value="blu navy|#22305e" aria-label="Calzettoni blu"><i style="background:#22305e"></i></label>
+    <label><input type="radio" name="cols" value="rosso|#c8262f" checked aria-label="Calzettoni rossi"><i style="background:#c8262f"></i></label>
+    <label><input type="radio" name="cols" value="giallo|#FDC300" aria-label="Calzettoni gialli"><i style="background:#FDC300"></i></label>
+   </div>
+  </div>
+  <div class="pills" style="margin-top:14px">
+   <label class="pill"><input type="checkbox" id="nn">Nome e numero sul retro (+3 € a kit)</label>
+  </div>
+  <div id="roster" hidden>
+   <label class="f">Colore di nome e numero</label>
+   <div class="sw">
+    <label><input type="radio" name="coln" value="bianco|#ffffff" checked aria-label="Numero bianco"><i style="background:#fff"></i></label>
+    <label><input type="radio" name="coln" value="nero|#1b1b1f" aria-label="Numero nero"><i style="background:#1b1b1f"></i></label>
+    <label><input type="radio" name="coln" value="giallo|#FDC300" aria-label="Numero giallo"><i style="background:#FDC300"></i></label>
+    <label><input type="radio" name="coln" value="rosso|#c8262f" aria-label="Numero rosso"><i style="background:#c8262f"></i></label>
+    <label><input type="radio" name="coln" value="blu navy|#22305e" aria-label="Numero blu"><i style="background:#22305e"></i></label>
+   </div>
+   <p class="hint" style="margin-top:12px">Scrivi i giocatori: le quantità per taglia le calcoliamo da qui.</p>
+   <div id="rows"></div>
+   <button type="button" id="addp" class="addp">+ Aggiungi giocatore</button>
+  </div>
+ </div>
+</section>
+
+<section class="step" aria-labelledby="s2">
+ <div class="sh"><span class="n">2</span><h2 id="s2">Quanti per taglia?</h2></div>
+ <div class="sizes" id="sizes"></div>
+ <div class="tiers"><span data-t="1">1-9 pezzi</span><span data-t="10">10-49: −15%</span><span data-t="50">50+: −25%</span></div>
+</section>
+
+<section class="step" aria-labelledby="s3">
+ <div class="sh"><span class="n">3</span><h2 id="s3">Come la stampiamo?</h2></div>
+ <div class="pills" id="pos">
+  <label class="pill"><input type="radio" name="pos" value="davanti|4" checked>Davanti</label>
+  <label class="pill"><input type="radio" name="pos" value="dietro|4">Dietro</label>
+  <label class="pill"><input type="radio" name="pos" value="davanti e dietro|7">Davanti e dietro</label>
+  <label class="pill"><input type="radio" name="pos" value="logo sul cuore|2.5">Logo sul cuore</label>
+ </div>
+ <div class="pills" style="margin-top:10px">
+  <label class="pill"><input type="radio" name="tec" value="stampa 1 colore|0" checked>Stampa 1 colore</label>
+  <label class="pill"><input type="radio" name="tec" value="stampa a colori|2">Stampa a colori</label>
+  <label class="pill"><input type="radio" name="tec" value="ricamo|4">Ricamo</label>
+ </div>
+ <label class="f" for="tx">Nome della scuola (davanti)</label>
+ <input type="text" id="tx" maxlength="22" placeholder="Liceo Gramsci Olbia">
+ <label class="f" for="cl">Classe e anno (sul retro)</label>
+ <input type="text" id="cl" maxlength="14" placeholder="5ªB 2027" value="5ªB 2027">
+ <p class="hint">Il logo della scuola ce lo mandi in chat. Volete una grafica di classe? La disegniamo noi.</p>
+</section>
+
+<section class="step" aria-labelledby="s4">
+ <div class="sh"><span class="n">4</span><h2 id="s4">I tuoi dati</h2></div>
+ <label class="f" for="nm">Nome del rappresentante (o della scuola)</label><input type="text" id="nm" autocomplete="name" placeholder="Martina Sanna, rappresentante 5ªB">
+ <label class="f" for="tl">Telefono</label><input type="tel" id="tl" autocomplete="tel" inputmode="tel" placeholder="333 123 4567">
+ <label class="f" for="dt">Per quando ti servono?</label><input type="date" id="dt">
+</section>
+
+</div>
+<div class="note"><b>Come funziona:</b> il prezzo qui è indicativo. Ti mandiamo su WhatsApp la bozza grafica da approvare e il preventivo definitivo; la produzione parte con l'approvazione. Per le aziende di Olbia veniamo noi da te.</div>
+<p class="demo">Versione scuole. Proposta preparata da Francesco Bilangione per FD Grafik: capi e prezzi sono di prova e si impostano con voi. In questa demo il messaggio arriva a Francesco; nella versione vera arriva al vostro WhatsApp.</p>
+</main>
+
+<div class="bar"><div class="in">
+ <div class="sum"><small id="who">0 pezzi</small><b id="tot">0 €</b></div>
+ <a class="send" id="send" href="#" target="_blank" rel="noopener">Invia su WhatsApp</a>
+</div></div>
+
+<script>
+const NUMERO="393318522753";
+const SZ=['6-8 anni','9-11 anni','12-14 anni','XS','S','M','L','XL'];const q={'6-8 anni':0,'9-11 anni':0,'12-14 anni':0,XS:2,S:6,M:8,L:6,XL:2};let tried=false;
+const $=s=>document.querySelector(s);const eur=x=>x.toLocaleString('it-IT',{minimumFractionDigits:x%1?2:0,maximumFractionDigits:2})+' €';
+const box=$('#sizes');SZ.forEach(s=>{const d=document.createElement('div');d.className='sz';d.innerHTML=`<b>${s}</b><div><button type="button" aria-label="Togli una ${s}">−</button><output aria-live="polite">${q[s]}</output><button type="button" aria-label="Aggiungi una ${s}">+</button></div>`;const [m,o,p]=d.querySelector('div').children;m.onclick=()=>{q[s]=Math.max(0,q[s]-1);upd()};p.onclick=()=>{q[s]=Math.min(500,q[s]+1);upd()};box.appendChild(d);});
+function val(n){return document.querySelector(`input[name=${n}]:checked`).value.split('|')}
+function problema(){const tot=SZ.reduce((a,s)=>a+q[s],0);if(!tot)return{t:'Aggiungi almeno un pezzo',el:'#sizes'};if(!$('#nm').value.trim())return{t:'Scrivi il nome',el:'#nm'};if($('#tl').value.replace(/\D/g,'').length<9)return{t:'Scrivi il telefono',el:'#tl'};return null;}
+
+let lastKey='',lastSig='',inkT;
+function stampa(bx,by,bw,bh){const pt=document.getElementById('pt'),q=document.getElementById('sqb');
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches){pt.style.clipPath='none';return}
+ pt.style.transition='none';pt.style.clipPath='inset(0 100% 0 0)';void pt.getBBox();pt.style.transition='';
+ requestAnimationFrame(()=>{pt.style.clipPath='inset(0 0% 0 0)'});
+ q.setAttribute('y',by-3);q.setAttribute('height',bh+6);
+ q.animate([{transform:`translateX(${bx}px)`,opacity:1},{transform:`translateX(${bx+bw}px)`,opacity:1},{transform:`translateX(${bx+bw}px)`,opacity:0}],{duration:620,easing:'cubic-bezier(.5,0,.2,1)'});}
+
+let players=[{n:'Rossi',num:'10',t:'M'},{n:'Bianchi',num:'7',t:'L'},{n:'Esposito',num:'9',t:'M'}];
+function renderRows(){const R=document.getElementById('rows');R.innerHTML='';players.forEach((pl,i)=>{const d=document.createElement('div');d.className='prow';
+ d.innerHTML=`<input type="text" maxlength="14" placeholder="Nome" value="${pl.n}" aria-label="Nome giocatore ${i+1}"><input type="text" inputmode="numeric" maxlength="2" placeholder="N°" value="${pl.num}" aria-label="Numero giocatore ${i+1}"><select aria-label="Taglia giocatore ${i+1}">${SZ.map(z=>`<option${z===pl.t?' selected':''}>${z}</option>`).join('')}</select><button type="button" aria-label="Togli giocatore ${i+1}">×</button>`;
+ const [a,b,c,x]=d.children;a.oninput=()=>{pl.n=a.value;upd()};b.oninput=()=>{pl.num=b.value.replace(/\D/g,'');b.value=pl.num;upd()};c.onchange=()=>{pl.t=c.value;upd()};x.onclick=()=>{players.splice(i,1);renderRows();upd()};R.appendChild(d)})}
+document.getElementById('addp').onclick=()=>{players.push({n:'',num:'',t:'M'});renderRows();upd();const ins=document.querySelectorAll('#rows input[type=text]');ins[ins.length-2]?.focus()};
+function upd(){
+ const rosterOn=val('capo')[0].startsWith('Kit')&&document.getElementById('nn').checked;
+ document.getElementById('roster').hidden=!rosterOn;box.classList.toggle('locked',rosterOn);
+ if(rosterOn){SZ.forEach(z=>q[z]=0);players.forEach(pl=>q[pl.t]++)}
+ [...box.children].forEach((d,i)=>{d.querySelector('output').value=q[SZ[i]];d.classList.toggle('on',q[SZ[i]]>0)});
+ const [capo,pc]=val('capo'),[col,hex]=val('col'),[pos,pp]=val('pos'),[tec,pt]=val('tec');
+ const pezzi=SZ.reduce((a,s)=>a+q[s],0);const sc=pezzi>=50?.25:pezzi>=10?.15:0;
+ document.querySelectorAll('.tiers span').forEach(s=>s.classList.toggle('on',(+s.dataset.t)===(pezzi>=50?50:pezzi>=10?10:1)));
+ 
+ const key={'T-shirt':'tshirt','Polo':'polo','Felpa':'felpa','Giubbotto da lavoro':'giubbotto','Kit sportivo (maglia + pantaloncino)':'kit','Pantalone da lavoro':'pantalone'}[capo]||'tshirt';
+ document.querySelectorAll('.capo-g').forEach(g=>g.classList.toggle('on',g.id==='g-'+key));
+ document.querySelectorAll('.cf').forEach(e=>e.style.fill=hex);
+ const isKit=key==='kit';$('#kitx').hidden=!isKit;$('#collab').textContent=isKit?'Colore della maglia':'Colore del capo';
+ const calz=isKit&&$('#calz').checked;$('#calzc').hidden=!calz;
+ const [colb,hexb]=val('colb'),[cols,hexs]=val('cols');
+ const [coln,hexn]=val('coln');const p0n=(players.find(x=>x.num)||{num:'10'}).num;document.querySelectorAll('.snum').forEach(e=>{e.style.display=rosterOn&&isKit?'':'none';e.setAttribute('fill',hexn);e.textContent=p0n});
+ if(isKit){document.querySelectorAll('.kb').forEach(e=>e.style.fill=hexb);document.querySelectorAll('.ks').forEach(e=>e.style.fill=hexs);$('#socks').style.display=calz?'':'none'}
+ const kitTxt=isKit?(', pantaloncini '+colb+(calz?', calzettoni '+cols:', senza calzettoni')):'';
+ const extraKit=(calz?4:0)+(rosterOn?3:0);
+ const unit=(+pc+ +pp+ +pt+extraKit)*(1-sc);const tot=Math.round(unit*pezzi*100)/100;
+ const dark=['#1b1b1f','#22305e','#c8262f'].includes(hex);const ink=dark?'#FDC300':'#151515';
+ $('#pt').setAttribute('fill',ink);$('#pf').setAttribute('stroke',ink);
+ document.querySelectorAll('.capo-g path[stroke]').forEach(e=>e.setAttribute('stroke',dark?'#FDC300':'#151515'));
+ const small=pos==='logo sul cuore'||key==='pantalone';
+ const bxs={tshirt:[63,62,74,40],polo:[63,66,74,38],felpa:[66,52,68,36],giubbotto:[110,50,34,22],kit:[68,30,64,30],pantalone:[110,84,30,20]}[key];
+ let [bx,by,bw,bh]=bxs; if(pos==='logo sul cuore'&&key!=='pantalone'&&key!=='giubbotto'){bx=110;bw=30;bh=20;by=bxs[1];}
+ $('#pf').setAttribute('x',bx);$('#pf').setAttribute('y',by);$('#pf').setAttribute('width',bw);$('#pf').setAttribute('height',bh);
+ $('#pt').setAttribute('x',bx+bw/2);$('#pt').setAttribute('y',by+bh/2+3);$('#pt').setAttribute('font-size',bw<40?4.5:9);
+ const tx=$('#tx').value.trim();const both=pos==='davanti e dietro',back=pos==='dietro';const sig=key+pos+tec+tx;if(key!==lastKey){const g=document.getElementById('gar');g.classList.remove('swap');void g.getBBox();g.classList.add('swap');lastKey=key}
+ if(sig!==lastSig){lastSig=sig;clearTimeout(inkT);inkT=setTimeout(()=>stampa(bx,by,bw,bh),tx?260:0)}
+ $('#pt').textContent=(tx||'IL TUO LOGO').toUpperCase().slice(0,bw<40?10:18);
+ // tecnica visiva
+ const ptx=document.getElementById('pt');
+ ptx.removeAttribute('stroke');ptx.removeAttribute('stroke-dasharray');ptx.removeAttribute('stroke-width');ptx.style.letterSpacing='';
+ if(tec==='stampa a colori'){ptx.setAttribute('fill','url(#cmyk)')}
+ else if(tec==='ricamo'){ptx.style.letterSpacing='.6px';ptx.setAttribute('font-weight','900')}
+ const pf=document.getElementById('pf');pf.setAttribute('stroke-dasharray',tec==='ricamo'?'2.2 1.8':'5 4');pf.setAttribute('stroke-width',tec==='ricamo'?'1.6':'2');pf.setAttribute('rx',tec==='ricamo'?'9':'4');pf.setAttribute('fill',tec==='ricamo'?(dark?'rgba(253,195,0,.18)':'rgba(0,0,0,.07)'):'none');if(tec!=='ricamo')ptx.setAttribute('font-weight','800')
+ // viste fronte / retro
+ const A=document.getElementById('svgA'),V=document.getElementById('views');V.innerHTML='';
+ const clv=(document.getElementById('cl').value||'').trim();const classOn=!!clv;const showBoth=both||rosterOn||classOn;A.style.display=showBoth?'none':'';
+ if(showBoth){['Fronte','Retro'].forEach(lbl=>{const w=document.createElement('div');const c=A.cloneNode(true);c.removeAttribute('id');c.style.display='';c.querySelectorAll('rect[id="sqb"]').forEach(e=>e.remove());c.querySelectorAll('[id]').forEach(e=>{if(e.id!=='cmyk')e.removeAttribute('id')});if(lbl==='Retro'){c.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}if(lbl==='Retro'&&classOn){const tt=c.querySelectorAll('text:not(.snum)');const t=tt[tt.length-1];const ink=t.getAttribute('fill')&&!t.getAttribute('fill').startsWith('url')?t.getAttribute('fill'):(dark?'#FDC300':'#151515');const fr=c.querySelector('rect[stroke-dasharray]');if(fr)fr.remove();if(!both)t.style.display='none';const NS='http://www.w3.org/2000/svg';const parts=clv.split(/\s+/);const l1=parts.slice(0,-1).join(' ')||clv,l2=parts.length>1?parts[parts.length-1]:'';const a=document.createElementNS(NS,'text');a.setAttribute('x',100);a.setAttribute('y',l2?78:88);a.setAttribute('text-anchor','middle');a.setAttribute('font-family','Archivo,sans-serif');a.setAttribute('font-weight','900');a.setAttribute('font-size',l1.length>4?22:32);a.setAttribute('fill',ink);a.textContent=l1.toUpperCase();c.appendChild(a);if(l2){const b2=a.cloneNode();b2.setAttribute('y',100);b2.setAttribute('font-size',14);b2.textContent=l2;c.appendChild(b2)}if(both){t.style.display='none'}}if(lbl==='Retro'&&rosterOn){const p0=players.find(x=>x.n||x.num)||{n:'NOME',num:'10'};const tt=c.querySelectorAll('text:not(.snum)');const t=tt[tt.length-1];const ink=hexn;const fr=t.parentNode.querySelector('rect[stroke-dasharray]');if(fr)fr.remove();if(!both)t.remove();const NS='http://www.w3.org/2000/svg';const nm=document.createElementNS(NS,'text');nm.setAttribute('x',100);nm.setAttribute('y',30);nm.setAttribute('text-anchor','middle');nm.setAttribute('font-family','Archivo,sans-serif');nm.setAttribute('font-weight','900');nm.setAttribute('font-size','11');nm.setAttribute('fill',ink);nm.textContent=(p0.n||'NOME').toUpperCase();const nu=nm.cloneNode();nu.setAttribute('y',76);nu.setAttribute('font-size','40');nu.textContent=p0.num||'10';c.appendChild(nm);c.appendChild(nu);if(both){t.setAttribute('y',88);t.style.display='none'}}w.appendChild(c);const l=document.createElement('div');l.className='vlab';l.textContent=lbl;w.appendChild(l);V.appendChild(w)})}
+ if(back){A.querySelectorAll('.capo-g.on path:not(.cf),.capo-g.on circle').forEach(e=>e.style.display='none')}else{A.querySelectorAll('.capo-g path:not(.cf),.capo-g circle').forEach(e=>e.style.display='')}
+
+ $('#pv').innerHTML=capo.replace(/ \(.*\)/,'')+' · '+col+' · '+(back?'vista retro':pos)+'<span class="tecbadge">'+tec.replace('stampa ','')+'</span>';
+ $('#who').textContent=pezzi+(pezzi==1?' pezzo':' pezzi')+' · '+eur(Math.round(unit*100)/100)+' l\'uno';$('#tot').textContent=eur(tot);
+ const taglie=SZ.filter(s=>q[s]).map(s=>s+': '+q[s]).join(', ');
+ const rosterTxt=rosterOn?['','Nomi e numeri sul retro (numero anche sui pantaloncini), colore '+coln+':',...players.filter(x=>x.n||x.num).map(x=>(x.num||'-')+' '+(x.n||'-').toUpperCase()+' ('+x.t+')')]:[];
+ const msg=['Ciao! Vorrei un preventivo.','','Capo: '+capo+', '+(key==='kit'?'maglia ':'colore ')+col+kitTxt,'Taglie: '+(taglie||'-'),'Totale pezzi: '+pezzi,'Stampa: '+pos+', '+tec,'Scuola (davanti): '+(tx||'da definire, vi mando il logo in chat)'),'Classe sul retro: '+(clv||'no'),'Per quando: '+($('#dt').value?$('#dt').value.split('-').reverse().join('/'):'da definire'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'',...rosterTxt,'','Prezzo indicato dal modulo: '+eur(tot)+(sc?' (sconto quantità '+sc*100+'%)':'')].join('\n');
+ const a=$('#send'),p=problema();
+ if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia su WhatsApp';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
+ else{a.classList.remove('err');a.textContent='Invia su WhatsApp';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
+}
+document.addEventListener('input',upd);document.addEventListener('change',upd);renderRows();upd();
+</script>
+</body>
+</html>
