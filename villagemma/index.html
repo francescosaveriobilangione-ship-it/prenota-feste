@@ -85,6 +85,18 @@ input[type=range]{width:100%;accent-color:var(--notte);margin-top:8px}
 .sum b.bump{animation:bump .35s ease-out}
 @keyframes bump{40%{color:var(--champ)}}
 @media (prefers-reduced-motion:reduce){.hill .draw{stroke-dashoffset:0}.hero-t{opacity:1}}
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 8px;scrollbar-width:none}
+.days::-webkit-scrollbar{display:none}
+.day{flex:none;width:64px;border:1.5px solid var(--line);border-radius:14px;padding:8px 0;text-align:center;cursor:pointer;background:#fff;font:inherit;color:var(--ink)}
+.day small{display:block;font-size:12.5px;color:var(--mute)}
+.day b{display:block;font:400 22px/1.1 "Young Serif",Georgia,serif}
+.day[aria-checked=true]{background:var(--notte);border-color:var(--notte);color:#fff}
+.day[aria-checked=true] small{color:#CFE0D4}
+.day:focus-visible,.slot:focus-visible{outline:3px solid var(--champ);outline-offset:2px}
+.slots{margin-top:6px}
+.slot{border:1.5px solid var(--line);border-radius:999px;padding:9px 15px;font:600 15px Figtree,sans-serif;background:#fff;color:var(--ink);cursor:pointer}
+.slot[aria-checked=true]{background:var(--nebbia);border-color:var(--notte);color:var(--notte)}
+.slot:disabled{opacity:.4;text-decoration:line-through;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -169,11 +181,13 @@ input[type=range]{width:100%;accent-color:var(--notte);margin-top:8px}
  <div class="sh"><span class="n">6</span><h2 id="s6">I tuoi dati</h2></div>
  <label class="f" for="nm">Nome e cognome</label><input type="text" id="nm" autocomplete="name" placeholder="Anna Russo">
  <label class="f" for="tl">Telefono</label><input type="tel" id="tl" autocomplete="tel" inputmode="tel" placeholder="333 123 4567">
- <label class="f" for="vs">Vuoi visitare la villa?</label>
- <select id="vs"><option>Sì, in settimana</option><option>Sì, nel weekend</option><option>Prima vorrei il preventivo</option></select>
+ <label class="f">Prenota la visita alla villa</label>
+ <div class="days" id="days" role="radiogroup" aria-label="Giorno della visita"></div>
+ <div class="pills slots" id="slots" role="radiogroup" aria-label="Orario della visita"></div>
+ <p class="hint" id="vsh">Scegli un giorno, poi l'orario. Visite su appuntamento.</p>
 </section>
 
-<div class="note"><b>Come funziona:</b> la stima qui sotto è indicativa. Ti mandiamo su WhatsApp il preventivo preciso e la disponibilità della data. La data si blocca con un acconto, dopo la visita.</div>
+<div class="note"><b>Come funziona:</b> la stima qui sotto è indicativa. Ti mandiamo su WhatsApp il preventivo preciso e la conferma della visita. La data si blocca con un acconto, dopo la visita.</div>
 <p class="demo">Proposta preparata da Francesco Bilangione per Villa Gemma: menù, extra e prezzi sono di prova e si impostano con voi. In questa demo il messaggio arriva a Francesco; nella versione vera arriva al vostro WhatsApp.</p>
 </main>
 
@@ -193,6 +207,20 @@ function problema(){
  if(!$('#nm').value.trim())return{t:'Scrivi nome e cognome',el:'#nm'};
  if($('#tl').value.replace(/\D/g,'').length<9)return{t:'Scrivi il telefono',el:'#tl'};
  return null;}
+let vDay=null,vSlot=null;
+(function(){const box=$('#days');const gg=['dom','lun','mar','mer','gio','ven','sab'];const mm=['gen','feb','mar','apr','mag','giu','lug','ago','set','ott','nov','dic'];
+ let d=new Date();d.setDate(d.getDate()+1);let n=0;
+ while(n<12){if(d.getDay()!==2){const b=document.createElement('button');b.type='button';b.className='day';b.setAttribute('role','radio');b.setAttribute('aria-checked','false');
+  b.dataset.v=gg[d.getDay()]+' '+d.getDate()+' '+mm[d.getMonth()];b.dataset.w=d.getDay();b.innerHTML='<small>'+gg[d.getDay()]+'</small><b>'+d.getDate()+'</b><small>'+mm[d.getMonth()]+'</small>';
+  b.onclick=()=>{box.querySelectorAll('.day').forEach(x=>x.setAttribute('aria-checked','false'));b.setAttribute('aria-checked','true');vDay=b.dataset.v;vSlot=null;slots(+b.dataset.w,d0(b.dataset.v));upd();};box.appendChild(b);n++;}
+  d.setDate(d.getDate()+1);}
+ function d0(v){return v.length}
+ function slots(w,seed){const s=$('#slots');s.innerHTML='';const hrs=(w===0||w===6)?['10:00','11:30','15:00','16:30','18:00']:['11:00','16:00','17:30'];
+  hrs.forEach((h,i)=>{const b=document.createElement('button');b.type='button';b.className='slot';b.textContent=h;b.setAttribute('role','radio');b.setAttribute('aria-checked','false');
+   if((seed+i)%4===0){b.disabled=true;b.title='Già prenotato';}
+   b.onclick=()=>{s.querySelectorAll('.slot').forEach(x=>x.setAttribute('aria-checked','false'));b.setAttribute('aria-checked','true');vSlot=h;upd();};s.appendChild(b);});
+  $('#vsh').textContent='Gli orari barrati sono già prenotati.';}
+})();
 let shown=null,raf=0;
 function anim(t){const el=$('#tot');if(shown===null||matchMedia('(prefers-reduced-motion: reduce)').matches){shown=t;el.textContent='da '+eur(t);return}
  if(t===shown)return;cancelAnimationFrame(raf);const a=shown,t0=performance.now(),d=450;el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');
@@ -210,7 +238,7 @@ function upd(){
  document.querySelectorAll('#ex input:checked').forEach(i=>{const [n,c]=i.value.split('|');ex.push(n);tot+=c.endsWith('pp')?g*parseInt(c):+c;});
  $('#who').textContent=tp+', '+g+' adulti'+(k?' e '+k+' bambini':'')+', menù '+mn;
  anim(tot);
- const msg=['Buongiorno! Vorrei un preventivo da Villa Gemma.','','Evento: '+tp+' ('+mo+')','Data: '+fd($('#d1').value)+($('#d2').value?' (in alternativa '+fd($('#d2').value)+')':''),($('#chiesa').checked?'Cerimonia: '+$('#chiesa').value:'Cerimonia: altrove o nessuna'),'Invitati: '+g+' adulti'+(k?' + '+k+' bambini':''),'Menù: '+mn+' (da '+pp+' € a persona)','Spazio: '+sp,'Extra: '+(ex.join(', ')||'nessuno'),'Note: '+($('#nt').value.trim()||'nessuna'),'Visita alla villa: '+$('#vs').value,'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Stima indicata dal modulo: da '+eur(tot)].join('\n');
+ const msg=['Buongiorno! Vorrei un preventivo da Villa Gemma.','','Evento: '+tp+' ('+mo+')','Data: '+fd($('#d1').value)+($('#d2').value?' (in alternativa '+fd($('#d2').value)+')':''),($('#chiesa').checked?'Cerimonia: '+$('#chiesa').value:'Cerimonia: altrove o nessuna'),'Invitati: '+g+' adulti'+(k?' + '+k+' bambini':''),'Menù: '+mn+' (da '+pp+' € a persona)','Spazio: '+sp,'Extra: '+(ex.join(', ')||'nessuno'),'Note: '+($('#nt').value.trim()||'nessuna'),'Visita alla villa: '+(vDay&&vSlot?vDay+' alle '+vSlot:'da concordare'),'','Nome: '+$('#nm').value.trim(),'Telefono: '+$('#tl').value.trim(),'','Stima indicata dal modulo: da '+eur(tot)].join('\n');
  const a=$('#send'),p=problema();
  if(p){a.classList.toggle('err',tried);a.textContent=tried?p.t:'Invia la richiesta';a.href='#';a.removeAttribute('target');a.onclick=x=>{x.preventDefault();tried=true;upd();const el=$(p.el);el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.remove('flag');void el.offsetWidth;el.classList.add('flag');if(el.focus)el.focus({preventScroll:true});};}
  else{a.classList.remove('err');a.textContent='Invia la richiesta';a.href='https://wa.me/'+NUMERO+'?text='+encodeURIComponent(msg);a.target='_blank';a.onclick=null;}
